@@ -176,21 +176,16 @@ def backPropLearning(examples,network):
             for i in range(len(example[0].values())):
                 inputs[i].setValue(example[0][i])
 
-            # Set up all the hidden nodes
+            # Set up rest of the layers
 
-            for node in hidden:
-                for inputNumber in range(len(inputs)):
-                    node.setInput(inputs[inputNumber],inputNumber+1) # The "+1" is because of the dummy input
-                weightedInputs = node.calculateWeightedInputs()
-                output = sigmoidFunction(weightedInputs)
-                node.setOutput(output)
+            for layer in network[1:]:
 
-            for node in outputs:
-                for hiddenNumber in range(len(hidden)):
-                    node.setInput(hidden[hiddenNumber],hiddenNumber+1) # The "+1" is for the dummy input
-                weighedInputs = node.calcualteWeightedInputs()
-                output = sigmoidFunction(weightedInputs)
-                node.setOutput(output)
+                for node in layer:
+                    for inputNumber in range(len(network.index(layer)-1)):
+                        node.setInput(inputs[inputNumber],inputNumber+1) # The "+1" is because of the dummy input
+                    weightedInputs = node.calculateWeightedInputs()
+                    output = sigmoidFunction(weightedInputs)
+                    node.setOutput(output)
 
             for node in outputs:
                 node.setDelta(calculateDeltaJ(node, example))
