@@ -20,11 +20,18 @@ Still need to implement the calculate output and calculate input functions.
 '''
 class hiddenNode:
     def __init__(self,numInputs):
-        self.weights = [0] * numWeights
+        self.weights = [0] * numInputs
         self.weights[0] = 1
-        self.inputs = [0] * numWeights
+        self.inputs = [0] * numInputs
         self.inputs[0] = 1
         self.output = 0
+        self.delta = 0
+
+    def setDelta(self, newDelta):
+        self.delta = newDelta
+        
+    def getDelta(self):
+        return self.delta
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -63,6 +70,13 @@ class outputNode:
         self.inputs = [0] * numHiddenNodes
         self.input[0] = 1
         self.output = 0
+        self.delta = 0
+
+    def setDelta(self, newDelta):
+        self.delta = newDelta
+        
+    def getDelta(self):
+        return self.delta
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -102,6 +116,8 @@ def setInitialWeights(network):
         node.batchSetWeights(initialWeightsOutputs)
 
     return None
+
+def 
 
 '''
 Main algorithm.
