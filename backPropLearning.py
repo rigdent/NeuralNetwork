@@ -26,7 +26,6 @@ class hiddenNode:
         self.inputs = [0] * numInputs
         self.inputs[0] = 1
         self.output = 0
-<<<<<<< HEAD
         self.delta = 0
 
     def setDelta(self, newDelta):
@@ -34,9 +33,6 @@ class hiddenNode:
         
     def getDelta(self):
         return self.delta
-=======
-        self.weightedInput = 0
->>>>>>> FETCH_HEAD
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
