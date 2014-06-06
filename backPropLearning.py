@@ -27,10 +27,11 @@ class hiddenNode:
         self.inputs[0] = 1
         self.output = 0
         self.delta = 0
+        self.weightedInput
 
     def setDelta(self, newDelta):
         self.delta = newDelta
-        
+
     def getDelta(self):
         return self.delta
 
@@ -50,6 +51,7 @@ class hiddenNode:
             self.setInput(inputs[i],i)
 
     def calculateWeightedInputs(self):
+        return 1
         weightedInput = 0 # This is the inj notation in the book
         for i in range(len(self.weights)):
             weightedInput = weightedInput + (self.weights[i] * self.inputs[i])
@@ -82,13 +84,16 @@ class outputNode:
         self.input[0] = 1
         self.output = 0
         self.delta = 0
+        self.weightedInput
 
     def setDelta(self, newDelta):
         self.delta = newDelta
-        
+
     def getDelta(self):
         return self.delta
 
+    def calculateDeltaJ(self, example):
+        self.delta = sigmoidDerivativeFunction(self.getWeightedInputs)*(example.index(1)-self.output)
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -106,6 +111,7 @@ class outputNode:
         self.inputs[inputIndex] = input
 
     def calculateWeightedInputs(self):
+        return 1
         weightedInput = 0 # This is the inj notation in the book
         for i in range(len(self.weights)):
             weightedInput = weightedInput + (self.weights[i] * self.inputs[i])
@@ -144,10 +150,6 @@ def setInitialWeights(network):
         node.batchSetWeights(initialWeightsOutputs)
 
     return None
-
-def calculateDeltaJ(node, example):
-    value = 0
-    sigmoidDerivativeFunction(node.getWeightedInputs)*example
 
 '''
 Main algorithm.
