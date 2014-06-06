@@ -27,13 +27,16 @@ class hiddenNode:
         self.inputs[0] = 1
         self.output = 0
         self.delta = 0
-        self.weightedInput
+        self.weightedInput = 0
 
     def setDelta(self, newDelta):
         self.delta = newDelta
 
     def getDelta(self):
         return self.delta
+
+    def calculateDeltaI(self, example):
+        sigmoidDerivativeFunction
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -86,7 +89,7 @@ class outputNode:
         self.input[0] = 1
         self.output = 0
         self.delta = 0
-        self.weightedInput
+        self.weightedInput = 0
 
     def setDelta(self, newDelta):
         self.delta = newDelta
