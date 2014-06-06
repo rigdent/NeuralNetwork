@@ -235,14 +235,35 @@ def decreaseAlpha(alpha):
     return float(alpha)
 
 def main():
+    data = open('smallData.txt', 'r')
+    data = data.readlines()
+    length = len(data)
+    counter = 1
+    examplesList = []
+    dict = {}
+    yVal = 0
+    for i in range(0,length):
+        if counter <17:
+            for j in range(0,16):
+                dict[yVal*16+j] = data[i][j]
+            yVal+=1
+        elif counter == 17:
+            examplesList.append((dict, data[i][0]))
+            counter = 0
+            yVal = 0
+            dict = {}
+        counter+= 1
+
+
+
+
+
     numHiddenNodes = 96
     numOutputs = 10
 
     outputVector = [0] * numOutputs
 
-
     ''' Examples list will be a list of tuples, where the first item in the tuple is the dictionary for the example, and the second item in the tuple is the actual value. This code takes that list, and converts the output value into an output vector.'''
-    examplesList = []
     for example in examplesList:
         value = example[1]
         example[1] = list(outputVector)
