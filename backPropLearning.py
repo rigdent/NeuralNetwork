@@ -127,7 +127,7 @@ def backPropLearning(examples,network):
 
             for node in hidden:
                 for inputNumber in range(len(inputs)):
-                    node.setInput(inputs[inputNumber-1],inputNumber+1)
+                    node.setInput(inputs[inputNumber],inputNumber+1)
 
 
 
