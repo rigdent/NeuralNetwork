@@ -132,7 +132,7 @@ def sigmoidFunction(x):
     return 1 / (1 + math.exp(x))
 
 def sigmoidDerivativeFunction(x):
-
+    return sigmoidFunction(x) * (1 - sigmoidFunction(x))
 
 def setInitialWeights(network):
     intialWeight = 0.5
@@ -145,7 +145,9 @@ def setInitialWeights(network):
 
     return None
 
-def 
+def calculateDeltaJ(node, example):
+    value = 0
+    sigmoidDerivativeFunction(node.getWeightedInputs)*example
 
 '''
 Main algorithm.
@@ -175,7 +177,8 @@ def backPropLearning(examples,network):
                 weightedInputs = node.calculateWeightedInputs()
                 output = sigmoidFunction(weightedInputs)
                 node.setOutput(output)
-
+            for node in outputs:
+                node.setDelta(calculateDeltaJ(node, example))
 
 
 
