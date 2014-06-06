@@ -35,9 +35,9 @@ class hiddenNode:
     def getDelta(self):
         return self.delta
 
-    '''calculates delta I. It takes the following parameters: the current example, the index of the 
-    hidden node we are calculating the delta for (we use it to find the appropriate weight from the 
-    hidden node to the output node which is stored as weights in output node), deltaJList is used to 
+    '''calculates delta I. It takes the following parameters: the current example, the index of the
+    hidden node we are calculating the delta for (we use it to find the appropriate weight from the
+    hidden node to the output node which is stored as weights in output node), deltaJList is used to
     get delta J of the outputNodes.
     '''
     def calculateDeltaI(self, example, index, deltaJList):
@@ -63,7 +63,6 @@ class hiddenNode:
             self.setInput(inputs[i],i)
 
     def calculateWeightedInputs(self):
-        return 1
         weightedInput = 0 # This is the inj notation in the book
         for i in range(len(self.weights)):
             weightedInput = weightedInput + (self.weights[i] * self.inputs[i])
@@ -125,7 +124,6 @@ class outputNode:
         self.inputs[inputIndex] = input
 
     def calculateWeightedInputs(self):
-        return 1
         weightedInput = 0 # This is the inj notation in the book
         for i in range(len(self.weights)):
             weightedInput = weightedInput + (self.weights[i] * self.inputs[i])
@@ -165,6 +163,14 @@ def setInitialWeights(network):
 
     return None
 
+def setCondition(numIterations):
+    epoch = 50000 # Maximum number of iterations
+    if numIterations >= epoc:
+        return False
+    else:
+        return True
+
+
 '''
 Main algorithm.
 Examples is a list of dictionaries, each dictionary is one example. The key is the pixel, and the value is the value of that pixel.
@@ -174,11 +180,12 @@ def backPropLearning(examples,network):
     hidden = examples[1]
     outputs = examples[2]
 
-    condition = True
-    while condition: # This is the repeat in the pseudocode that I'm not really sure about
+    # Sets the weights to all be some small initial value
+    setInitialWeights(network)
 
-        # Sets the weights to all be some small initial value
-        setInitialWeights(network)
+    iteration = 0
+    condition = setCondition(iteration)
+    while condition: # This is the repeat in the pseudocode that I'm not really sure about
 
         for example in examples:
             # set the inputs
@@ -206,7 +213,8 @@ def backPropLearning(examples,network):
 
 
 
-
+        iteration += 1
+        condition = setCondition(iteration)
 
     return True
 
