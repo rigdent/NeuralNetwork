@@ -59,7 +59,7 @@ class hiddenNode:
         return self.weights
 
     def batchSetInputs(self,inputs):
-        for i range(len(self.weights)):
+        for i in range(len(self.weights)):
             self.setInput(inputs[i],i)
 
     def calculateWeightedInputs(self):
@@ -92,9 +92,9 @@ Still need to implement the calculate output and calculate input functions.
 class outputNode:
     def __init__(self,numHiddenNodesAndDummy):
         self.weights = [0] * (numHiddenNodesAndDummy)
-        self.weight[0] = 1
+        self.weights[0] = 1
         self.inputs = [0] * (numHiddenNodesAndDummy)
-        self.input[0] = 1
+        self.inputs[0] = 1
         self.output = 0
         self.delta = 0
         self.weightedInput = 0
@@ -117,7 +117,7 @@ class outputNode:
         return self.weights
 
     def batchSetInputs(self,inputs):
-        for i range(len(self.weights)):
+        for i in range(len(self.weights)):
             self.setInput(inputs[i],i)
 
     def setInput(self,input,inputIndex):
@@ -153,9 +153,9 @@ def sigmoidDerivativeFunction(x):
     return sigmoidFunction(x) * (1 - sigmoidFunction(x))
 
 def setInitialWeights(network):
-    intialWeight = 0.5
-    initialWeightsHidden = [initialWeight] * len(hidden+1)
-    initialWeightsOutputs = [intialWeight] * len(outputs+1)
+    initialWeight = 0.5
+    initialWeightsHidden = [initialWeight] * len(network[1]+1)
+    initialWeightsOutputs = [intialWeight] * len(network[-1]+1)
     for node in network[1]:
         node.batchSetWeights(initialWeightsHidden)
     for node in network[2]:
@@ -220,7 +220,7 @@ def backPropLearning(examples,network):
                 for node in network[layerIndex]:
                     weights = node.getWeights()
                     inputs = node.getInputs()
-                    for i in range len(weights):
+                    for i in range(len(weights)):
                         newWeight = weights[i] + decreaseAlpha(alpha)*inputs[i]*node.getDelta()
                         node.setWeight(newWeight,i)
 
@@ -248,7 +248,7 @@ def main():
                 dict[yVal*16+j] = data[i][j]
             yVal+=1
         elif counter == 17:
-            examplesList.append((dict, data[i][0]))
+            examplesList.append([dict, int(data[i][0])])
             counter = 0
             yVal = 0
             dict = {}
@@ -285,3 +285,5 @@ def main():
     network = [inputs, hidden, outputs]
 
     neuralNetwork = backPropLearning(examplesList,network)
+
+main()
