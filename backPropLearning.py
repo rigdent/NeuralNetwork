@@ -73,6 +73,8 @@ class hiddenNode:
     def getInputs(self):
         return self.inputs
 
+
+
 '''
 Still need to implement the calculate output and calculate input functions.
 '''
@@ -180,6 +182,13 @@ def backPropLearning(examples,network):
                 output = sigmoidFunction(weightedInputs)
                 node.setOutput(output)
 
+            for node in outputs:
+                for hiddenNumber in range(len(hidden)):
+                    node.setInput(hidden[hiddenNumber],hiddenNumber+1) # The "+1" is for the dummy input
+                weighedInputs = node.calcualteWeightedInputs()
+                output = sigmoidFunction(weightedInputs)
+                node.setOutput(output)
+
 
 
 
@@ -192,6 +201,7 @@ def main():
     numOutputs = 10
 
     outputVector = [0] * numOutputs
+
 
     ''' Examples list will be a list of tuples, where the first item in the tuple is the dictionary for the example, and the second item in the tuple is the actual value. This code takes that list, and converts the output value into an output vector.'''
     examplesList = []
