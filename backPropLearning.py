@@ -4,6 +4,7 @@ Tenzin Rigden and Christopher Winter
 Uses the backwards propogation algorithm to build a neural network. This particular code is designed to be used for optical character recognition.
 '''
 
+import math
 
 class inputNode:
     def __init__(self,inputValue):
@@ -25,6 +26,7 @@ class hiddenNode:
         self.inputs = [0] * numInputs
         self.inputs[0] = 1
         self.output = 0
+<<<<<<< HEAD
         self.delta = 0
 
     def setDelta(self, newDelta):
@@ -32,6 +34,9 @@ class hiddenNode:
         
     def getDelta(self):
         return self.delta
+=======
+        self.weightedInput = 0
+>>>>>>> FETCH_HEAD
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -49,10 +54,20 @@ class hiddenNode:
             self.setInput(inputs[i],i)
 
     def calculateWeightedInputs(self):
-        return 1
+        weightedInput = 0 # This is the inj notation in the book
+        for i in range(len(self.weights)):
+            weightedInput = weightedInput + (self.weights[i] * self.inputs[i])
+        self.weightedInput = weightedInput
+        return weightedInput
+
+    def getWeightedInput(self):
+        return self.weightedInput
 
     def calculateOutput(self):
         return 1
+
+    def setOutput(self,output):
+        self.output = output
 
     def getWeights(self):
         return self.weights
@@ -70,6 +85,7 @@ class outputNode:
         self.inputs = [0] * numHiddenNodes
         self.input[0] = 1
         self.output = 0
+<<<<<<< HEAD
         self.delta = 0
 
     def setDelta(self, newDelta):
@@ -77,6 +93,9 @@ class outputNode:
         
     def getDelta(self):
         return self.delta
+=======
+        self.weightedInput = 0
+>>>>>>> FETCH_HEAD
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -94,16 +113,32 @@ class outputNode:
         self.inputs[inputIndex] = input
 
     def calculateWeightedInputs(self):
-        return 1
+        weightedInput = 0 # This is the inj notation in the book
+        for i in range(len(self.weights)):
+            weightedInput = weightedInput + (self.weights[i] * self.inputs[i])
+        self.weightedInput = weightedInput
+        return weightedInput
+
+    def getWeightedInput(self):
+        return self.weightedInput
 
     def calculateOutput(self):
         return 1
+
+    def setOutput(self,output):
+        self.output = output
 
     def getWeights(self):
         return self.weights
 
     def getInputs(self):
         return self.inputs
+
+
+def sigmoidFunction(x):
+    return 1 / (1 + math.exp(x))
+
+def sigmoidDerivativeFunction(x):
 
 
 def setInitialWeights(network):
@@ -143,7 +178,13 @@ def backPropLearning(examples,network):
 
             for node in hidden:
                 for inputNumber in range(len(inputs)):
-                    node.setInput(inputs[inputNumber],inputNumber+1)
+                    node.setInput(inputs[inputNumber],inputNumber+1) # The "+1" is because of the dummy input
+                weightedInputs = node.calculateWeightedInputs()
+                output = sigmoidFunction(weightedInputs)
+                node.setOutput(output)
+
+
+
 
 
 
