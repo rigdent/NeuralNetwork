@@ -35,8 +35,17 @@ class hiddenNode:
     def getDelta(self):
         return self.delta
 
-    def calculateDeltaI(self, example):
-        sigmoidDerivativeFunction
+    '''calculates delta I. It takes the following parameters: the current example, the index of the 
+    hidden node we are calculating the delta for (we use it to find the appropriate weight from the 
+    hidden node to the output node which is stored as weights in output node), deltaJList is used to 
+    get delta J of the outputNodes.
+    '''
+    def calculateDeltaI(self, example, index, deltaJList):
+        sumI = 0
+        sumI+=outputs[index].getWeights()[0]*1
+        for i in range(0,len(outputs[index].getWeights())):
+            sumI+= outputs[index].getWeights()[i+1]*deltaJList[i]
+        self.delta = sigmoidDerivativeFunction(self.weightedInput)*sumI
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -188,7 +197,12 @@ def backPropLearning(examples,network):
                     node.setOutput(output)
 
             for node in outputs:
-                node.setDelta(calculateDeltaJ(node, example))
+                node.setDelta(node.calculateDeltaJ(example))
+            for hiddenNode in hidden:
+                deltaJList = []
+                for outputNode in outputs:
+                    deltaJList.append(outputNode.getDelta)
+                hiddenNode.calculateDeltaI(example,hidden.index(hiddenNode), deltaJList)
 
 
 
