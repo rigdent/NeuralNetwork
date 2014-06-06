@@ -20,18 +20,11 @@ Still need to implement the calculate output and calculate input functions.
 '''
 class hiddenNode:
     def __init__(self,numInputs):
-        self.weights = [0] * numInputs
+        self.weights = [0] * numWeights
         self.weights[0] = 1
-        self.inputs = [0] * numInputs
+        self.inputs = [0] * numWeights
         self.inputs[0] = 1
         self.output = 0
-        self.delta = 0
-
-    def setDelta(self, newDelta):
-        self.delta = newDelta
-
-    def getDelta(self):
-        return self.delta
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -70,13 +63,6 @@ class outputNode:
         self.inputs = [0] * numHiddenNodes
         self.input[0] = 1
         self.output = 0
-        self.delta = 0
-
-    def setDelta(self, newDelta):
-        self.delta = newDelta
-
-    def getDelta(self):
-        return self.delta
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -106,12 +92,6 @@ class outputNode:
         return self.inputs
 
 
-def sigmoidFunction(x):
-    return 1 / (1 + math.exp(x))
-
-def sigmoidDerivativeFunction(x):
-    return sigmoidFunction(x) * (1 - sigmoidFunction(x))
-
 def setInitialWeights(network):
     intialWeight = 0.5
     initialWeightsHidden = [initialWeight] * len(hidden)
@@ -122,10 +102,6 @@ def setInitialWeights(network):
         node.batchSetWeights(initialWeightsOutputs)
 
     return None
-
-def calculateDeltaJ(node):
-    value = 0
-    sigmoidDerivativeFunction(node.getWeightedInputs)*
 
 '''
 Main algorithm.
