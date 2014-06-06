@@ -184,7 +184,6 @@ def backPropLearning(examples,network):
                 weightedInputs = node.calculateWeightedInputs()
                 output = sigmoidFunction(weightedInputs)
                 node.setOutput(output)
-<<<<<<< HEAD
 
             for node in outputs:
                 for hiddenNumber in range(len(hidden)):
@@ -193,10 +192,8 @@ def backPropLearning(examples,network):
                 output = sigmoidFunction(weightedInputs)
                 node.setOutput(output)
 
-=======
             for node in outputs:
                 node.setDelta(calculateDeltaJ(node, example))
->>>>>>> FETCH_HEAD
 
 
 
