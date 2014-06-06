@@ -21,7 +21,9 @@ Still need to implement the calculate output and calculate input functions.
 class hiddenNode:
     def __init__(self,numInputs):
         self.weights = [0] * numWeights
+        self.weights[0] = 1
         self.inputs = [0] * numWeights
+        self.inputs[0] = 1
         self.output = 0
 
     def setWeight(self,weight,wieghtIndex):
@@ -57,7 +59,9 @@ Still need to implement the calculate output and calculate input functions.
 class outputNode:
     def __init__(self,numHiddenNodes):
         self.weights = [0] * numHiddenNodes
+        self.weight[0] = 1
         self.inputs = [0] * numHiddenNodes
+        self.input[0] = 1
         self.output = 0
 
     def setWeight(self,weight,wieghtIndex):
@@ -88,8 +92,14 @@ class outputNode:
         return self.inputs
 
 
-def getWeights(network):
-    
+def setInitialWeights(network):
+    intialWeight = 0.5
+    initialWeightsHidden = [initialWeight] * len(hidden)
+    initialWeightsOutputs = [intialWeight] * len(outputs)
+    for node in network[1]:
+        node.batchSetWeights(initialWeightsHidden)
+    for node in network[2]:
+        node.batchSetWeights(initialWeightsOutputs)
 
     return None
 
@@ -98,9 +108,27 @@ Main algorithm.
 Examples is a list of dictionaries, each dictionary is one example. The key is the pixel, and the value is the value of that pixel.
 '''
 def backPropLearning(examples,network):
+    inputs = examples[0]
+    hidden = examples[1]
+    outputs = examples[2]
+
     condition = True
     while condition: # This is the repeat in the pseudocode that I'm not really sure about
-        for weight in getWeights(network): # How to get the weights
+
+        # Sets the weights to all be some small initial value
+        setInitialWeights(network)
+
+        for example in examples:
+            # set the inputs
+            for i in range(len(example[0].values())):
+                inputs[i].setValue(example[0][i])
+
+            # Set up all the hidden nodes
+
+            for node in hidden:
+                for inputNumber in range(len(inputs)):
+                    node.setInput(inputs[inputNumber-1],inputNumber+1)
+
 
 
     return True
@@ -123,11 +151,11 @@ def main():
     for i in range(numberOfInputs):
         inputs[i] = inputNode(0)
 
-    hidden = [0] * numberOfInputs
+    hidden = [0] * numberOfInputs + 1
     for node in range(numHiddenNodes):
-        hidden[node] = hiddenNode(numberOfInputs) # Where this list will become (input,wieght)
+        hidden[node] = hiddenNode(numberOfInputs)
 
-    outputs = [0] * numHiddenNodes
+    outputs = [0] * numHiddenNodes + 1
     for i in range(numOutputs):
         outputs[i] = outputNode(numHiddenNodes)
 
