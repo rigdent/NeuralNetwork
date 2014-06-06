@@ -31,7 +31,7 @@ class hiddenNode:
 
     def setDelta(self, newDelta):
         self.delta = newDelta
-        
+
     def getDelta(self):
         return self.delta
 =======
@@ -90,7 +90,7 @@ class outputNode:
 
     def setDelta(self, newDelta):
         self.delta = newDelta
-        
+
     def getDelta(self):
         return self.delta
 =======
@@ -139,7 +139,7 @@ def sigmoidFunction(x):
     return 1 / (1 + math.exp(x))
 
 def sigmoidDerivativeFunction(x):
-
+    return sigmoidFunction(x) * (1 - sigmoidFunction(x))
 
 def setInitialWeights(network):
     intialWeight = 0.5
@@ -152,7 +152,7 @@ def setInitialWeights(network):
 
     return None
 
-def 
+def
 
 '''
 Main algorithm.
