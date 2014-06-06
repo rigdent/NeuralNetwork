@@ -4,6 +4,7 @@ Tenzin Rigden and Christopher Winter
 Uses the backwards propogation algorithm to build a neural network. This particular code is designed to be used for optical character recognition.
 '''
 
+
 class inputNode:
     def __init__(self,inputValue):
         self.value = inputValue
