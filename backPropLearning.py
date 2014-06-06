@@ -94,6 +94,8 @@ class outputNode:
     def getDelta(self):
         return self.delta
 
+    def calculateDeltaJ(self, example):
+        self.delta = sigmoidDerivativeFunction(self.getWeightedInputs)*(example.index(1)-self.output)
 
     def setWeight(self,weight,wieghtIndex):
         self.weights[weightIndex] = weight
@@ -151,8 +153,6 @@ def setInitialWeights(network):
 
     return None
 
-def
-
 '''
 Main algorithm.
 Examples is a list of dictionaries, each dictionary is one example. The key is the pixel, and the value is the value of that pixel.
@@ -181,6 +181,7 @@ def backPropLearning(examples,network):
                 weightedInputs = node.calculateWeightedInputs()
                 output = sigmoidFunction(weightedInputs)
                 node.setOutput(output)
+<<<<<<< HEAD
 
             for node in outputs:
                 for hiddenNumber in range(len(hidden)):
@@ -189,6 +190,10 @@ def backPropLearning(examples,network):
                 output = sigmoidFunction(weightedInputs)
                 node.setOutput(output)
 
+=======
+            for node in outputs:
+                node.setDelta(calculateDeltaJ(node, example))
+>>>>>>> FETCH_HEAD
 
 
 
