@@ -253,6 +253,39 @@ def backPropLearning(examples,network):
 
     return True
 
+
+def determineNumber(network, numBitmapDict):
+    #make return int. currently returns str to see if multiple outputs are found
+    # to have values of 1
+    answerNumber = ""
+    for i in range(len(numBitmapDict[0].values())):
+            inputs[i].setValue(numBitmapDict[0][i])
+        # Set up rest of the layers
+    for layer in network[1:]:
+        for node in layer:
+            for inputNumber in range(len(network[network.index(layer)-1])):
+                node.setInput(network[network.index(layer)-1][inputNumber].getOutput(),inputNumber+1) # The "+1" is because of the dummy input
+            weightedInputs = node.calculateWeightedInputs()
+            output = sigmoidFunction(weightedInputs)
+            node.setOutput(output)
+    for outputNode in network[2]:
+        if outputNode.getOutput() == 1:
+            answerNumber = answerNumber + str(network.index[outputNode])
+    return answerNumber
+
+
+def leaveOneOut(startNetwork, examples):
+    successes = 0
+    for i in range(len(examples)):
+        trainingData = list(examples)
+        testData = trainingData.pop(i)
+        testnetwork = backPropLearning(examplesList, startNetwork)
+        foundNumber = determineNumber(testnetwork, testData[0])
+        if foundNumber == testData[1]:
+            successes += 1
+    return float(successes)/len(examples)
+
+
 def decreaseAlpha(alpha):
     return float(alpha)
 
@@ -305,5 +338,19 @@ def main():
     network = [inputs, hidden, outputs]
 
     neuralNetwork = backPropLearning(examplesList,network)
+
+
+
+
+    ##testing stuff
+    testData = open('testData.txt', 'r')
+    testData = data.readlines()
+    length = len(testData)
+    testExample = {}
+    for i in range(16):
+        for j in range(0,16):
+            testExample[16+j] = int(data[i][j])
+
+    print determineNumber(neuralNetwork, testExample)
 
 main()
