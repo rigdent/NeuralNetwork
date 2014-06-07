@@ -154,8 +154,8 @@ def sigmoidDerivativeFunction(x):
 
 def setInitialWeights(network):
     initialWeight = 0.5
-    initialWeightsHidden = [initialWeight] * len(network[1]+1)
-    initialWeightsOutputs = [intialWeight] * len(network[-1]+1)
+    initialWeightsHidden = [initialWeight] * len(network[1])+1
+    initialWeightsOutputs = [initialWeight] * len(network[-1])+1
     for node in network[1]:
         node.batchSetWeights(initialWeightsHidden)
     for node in network[2]:
@@ -269,20 +269,26 @@ def main():
         example[1] = list(outputVector)
         example[1][value] = 1
 
-    numberOfInputs = len(examplesList)
+    numberOfInputs = len(examplesList[0][0]) # The length of one of the dictionaries of inputs
     inputs = [0] * numberOfInputs
     for i in range(numberOfInputs):
         inputs[i] = inputNode(0)
 
-    hidden = [0] * (numberOfInputs + 1)
-    for node in range(numHiddenNodes):
-        hidden[node] = hiddenNode(numberOfInputs)
 
-    outputs = [0] * (numHiddenNodes + 1)
+
+    hidden = [0] * (numHiddenNodes)
+    for node in range(numHiddenNodes):
+        hidden[node] = hiddenNode(numberOfInputs+1)
+
+    outputs = [0] * (numOutputs)
     for i in range(numOutputs):
-        outputs[i] = outputNode(numHiddenNodes)
+        outputs[i] = outputNode(numHiddenNodes+1)
+
+    print len(hidden[0].getInputs())
 
     network = [inputs, hidden, outputs]
+
+    print len(network[1])
 
     neuralNetwork = backPropLearning(examplesList,network)
 
