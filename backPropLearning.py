@@ -47,13 +47,13 @@ class hiddenNode:
             sumI+= outputs[index].getWeights()[i+1]*deltaJList[i]
         self.delta = sigmoidDerivativeFunction(self.weightedInput)*sumI
 
-    def setWeight(self,weight,wieghtIndex):
+    def setWeight(self,weight,weightIndex):
         self.weights[weightIndex] = weight
 
     def setInput(self,input,inputIndex):
         self.inputs[inputIndex] = input
 
-    def batchSetWeight(self,weights):
+    def batchSetWeights(self,weights):
         for i in range(len(self.weights)):
             self.setWeight(weights[i],i)
         return self.weights
@@ -111,7 +111,7 @@ class outputNode:
     def setWeight(self,weight,weightIndex):
         self.weights[weightIndex] = weight
 
-    def batchSetWeight(self,weights):
+    def batchSetWeights(self,weights):
         for i in range(len(self.weights)):
             self.setWeight(weights[i],i)
         return self.weights
@@ -152,10 +152,12 @@ def sigmoidFunction(x):
 def sigmoidDerivativeFunction(x):
     return sigmoidFunction(x) * (1 - sigmoidFunction(x))
 
+
+''' This does not yet work with multiple hidden layers. '''
 def setInitialWeights(network):
     initialWeight = 0.5
-    initialWeightsHidden = [initialWeight] * len(network[1])+1
-    initialWeightsOutputs = [initialWeight] * len(network[-1])+1
+    initialWeightsHidden = [initialWeight] * (len(network[0]) + 1)
+    initialWeightsOutputs = [initialWeight] * (len(network[1]) + 1)
     for node in network[1]:
         node.batchSetWeights(initialWeightsHidden)
     for node in network[2]:
@@ -165,7 +167,7 @@ def setInitialWeights(network):
 
 def setCondition(numIterations):
     epoch = 50000 # Maximum number of iterations
-    if numIterations >= epoc:
+    if numIterations >= epoch:
         return False
     else:
         return True
@@ -201,8 +203,8 @@ def backPropLearning(examples,network):
             for layer in network[1:]:
 
                 for node in layer:
-                    for inputNumber in range(len(network.index(layer)-1)):
-                        node.setInput(inputs[inputNumber],inputNumber+1) # The "+1" is because of the dummy input
+                    for inputNumber in range(len(network[network.index(layer)-1])):
+                        node.setInput(network[network.index(layer)-1][inputNumber].getValue(),inputNumber+1) # The "+1" is because of the dummy input
                     weightedInputs = node.calculateWeightedInputs()
                     output = sigmoidFunction(weightedInputs)
                     node.setOutput(output)
@@ -245,7 +247,7 @@ def main():
     for i in range(0,length):
         if counter <17:
             for j in range(0,16):
-                dict[yVal*16+j] = data[i][j]
+                dict[yVal*16+j] = int(data[i][j])
             yVal+=1
         elif counter == 17:
             examplesList.append([dict, int(data[i][0])])
@@ -253,10 +255,6 @@ def main():
             yVal = 0
             dict = {}
         counter+= 1
-
-
-
-
 
     numHiddenNodes = 96
     numOutputs = 10
@@ -275,7 +273,6 @@ def main():
         inputs[i] = inputNode(0)
 
 
-
     hidden = [0] * (numHiddenNodes)
     for node in range(numHiddenNodes):
         hidden[node] = hiddenNode(numberOfInputs+1)
@@ -284,11 +281,8 @@ def main():
     for i in range(numOutputs):
         outputs[i] = outputNode(numHiddenNodes+1)
 
-    print len(hidden[0].getInputs())
 
     network = [inputs, hidden, outputs]
-
-    print len(network[1])
 
     neuralNetwork = backPropLearning(examplesList,network)
 
