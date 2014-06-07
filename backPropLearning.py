@@ -13,14 +13,15 @@ class inputNode:
     def setValue(self,value):
         self.value = value
 
-    def getValue(self):
+    # The value of an input node is just its output
+    def getOutput(self):
         return self.value
 
 '''
 Still need to implement the calculate output and calculate input functions.
 '''
 class hiddenNode:
-    def __init__(self,numInputsAndDummy):
+    def __init__(self,numInputsAndDummy,index):
         self.weights = [0] * (numInputsAndDummy)
         self.weights[0] = 1
         self.inputs = [0] * (numInputsAndDummy)
@@ -28,6 +29,10 @@ class hiddenNode:
         self.output = 0
         self.delta = 0
         self.weightedInput = 0
+        self.index = index
+
+    def getIndex(self):
+        return self.index
 
     def setDelta(self, newDelta):
         self.delta = newDelta
@@ -40,12 +45,13 @@ class hiddenNode:
     hidden node to the output node which is stored as weights in output node), deltaJList is used to
     get delta J of the outputNodes.
     '''
-    def calculateDeltaI(self, example, index, deltaJList):
+    def calculateDeltaI(self, example, outputs):
         sumI = 0
-        sumI+=outputs[index].getWeights()[0]*1
-        for i in range(0,len(outputs[index].getWeights())):
-            sumI+= outputs[index].getWeights()[i+1]*deltaJList[i]
-        self.delta = sigmoidDerivativeFunction(self.weightedInput)*sumI
+        for i in range(len(outputs)):
+            sumI+= outputs[i].getWeights()[self.index]*outputs[i].getDelta()
+        #self.delta = sigmoidDerivativeFunction(self.weightedInput)*sumI
+        return sigmoidDerivativeFunction(self.weightedInput)*sumI
+
 
     def setWeight(self,weight,weightIndex):
         self.weights[weightIndex] = weight
@@ -77,6 +83,9 @@ class hiddenNode:
 
     def setOutput(self,output):
         self.output = output
+
+    def getOutput(self):
+        return self.output
 
     def getWeights(self):
         return self.weights
@@ -90,7 +99,7 @@ class hiddenNode:
 Still need to implement the calculate output and calculate input functions.
 '''
 class outputNode:
-    def __init__(self,numHiddenNodesAndDummy):
+    def __init__(self,numHiddenNodesAndDummy,index):
         self.weights = [0] * (numHiddenNodesAndDummy)
         self.weights[0] = 1
         self.inputs = [0] * (numHiddenNodesAndDummy)
@@ -98,6 +107,10 @@ class outputNode:
         self.output = 0
         self.delta = 0
         self.weightedInput = 0
+        self.index = index
+
+    def getIndex(self):
+        return self.index
 
     def setDelta(self, newDelta):
         self.delta = newDelta
@@ -105,8 +118,10 @@ class outputNode:
     def getDelta(self):
         return self.delta
 
-    def calculateDeltaJ(self, example):
-        self.delta = sigmoidDerivativeFunction(self.getWeightedInputs)*(example.index(1)-self.output)
+    '''Not sure what Tenzin is trying to do here. I think he is looking for the index of the 1 in the output vector, which is the second item in the example list. So I added the index [1].'''
+    def calculateDeltaJ(self, example,index):
+        self.delta = sigmoidDerivativeFunction(self.getWeightedInputs())*(example[1][index]-self.output)
+        return self.delta
 
     def setWeight(self,weight,weightIndex):
         self.weights[weightIndex] = weight
@@ -130,7 +145,7 @@ class outputNode:
         self.weightedInput = weightedInput
         return weightedInput
 
-    def getWeightedInput(self):
+    def getWeightedInputs(self):
         return self.weightedInput
 
     def calculateOutput(self):
@@ -138,6 +153,9 @@ class outputNode:
 
     def setOutput(self,output):
         self.output = output
+
+    def getOutput(self):
+        return self.output
 
     def getWeights(self):
         return self.weights
@@ -166,7 +184,8 @@ def setInitialWeights(network):
     return None
 
 def setCondition(numIterations):
-    epoch = 50000 # Maximum number of iterations
+    print numIterations
+    epoch = 5 # Maximum number of iterations
     if numIterations >= epoch:
         return False
     else:
@@ -199,31 +218,32 @@ def backPropLearning(examples,network):
                 inputs[i].setValue(example[0][i])
 
             # Set up rest of the layers
-
             for layer in network[1:]:
 
                 for node in layer:
                     for inputNumber in range(len(network[network.index(layer)-1])):
-                        node.setInput(network[network.index(layer)-1][inputNumber].getValue(),inputNumber+1) # The "+1" is because of the dummy input
+                        node.setInput(network[network.index(layer)-1][inputNumber].getOutput(),inputNumber+1) # The "+1" is because of the dummy input
                     weightedInputs = node.calculateWeightedInputs()
                     output = sigmoidFunction(weightedInputs)
                     node.setOutput(output)
 
             for node in outputs:
-                node.setDelta(node.calculateDeltaJ(example))
+                index = outputs.index(node)
+                node.setDelta(node.calculateDeltaJ(example,index))
+                #node.calculateDeltaJ(example,index)
             for hiddenNode in hidden:
-                deltaJList = []
-                for outputNode in outputs:
-                    deltaJList.append(outputNode.getDelta)
-                hiddenNode.calculateDeltaI(example,hidden.index(hiddenNode), deltaJList)
+                # deltaJList = []
+                # for outputNode in outputs:
+                #     deltaJList.append(outputNode.getDelta)
+                hiddenNode.calculateDeltaI(example, outputs)
 
             #this is where we update weights
-            for layerIndex in range(1, len(network)+1):
+            for layerIndex in range(1, len(network)):
                 for node in network[layerIndex]:
                     weights = node.getWeights()
-                    inputs = node.getInputs()
+                    nodeInputs = node.getInputs()
                     for i in range(len(weights)):
-                        newWeight = weights[i] + decreaseAlpha(alpha)*inputs[i]*node.getDelta()
+                        newWeight = weights[i] + decreaseAlpha(alpha)*nodeInputs[i]*node.getDelta()
                         node.setWeight(newWeight,i)
 
 
@@ -274,12 +294,12 @@ def main():
 
 
     hidden = [0] * (numHiddenNodes)
-    for node in range(numHiddenNodes):
-        hidden[node] = hiddenNode(numberOfInputs+1)
+    for i in range(numHiddenNodes):
+        hidden[i] = hiddenNode(numberOfInputs+1,i)
 
     outputs = [0] * (numOutputs)
-    for i in range(numOutputs):
-        outputs[i] = outputNode(numHiddenNodes+1)
+    for j in range(numOutputs):
+        outputs[j] = outputNode(numHiddenNodes+1,j)
 
 
     network = [inputs, hidden, outputs]
