@@ -5,6 +5,7 @@ Uses the backwards propogation algorithm to build a neural network. This particu
 '''
 
 import math
+import random
 
 class inputNode:
     def __init__(self,inputValue):
@@ -173,7 +174,8 @@ def sigmoidDerivativeFunction(x):
 
 ''' This does not yet work with multiple hidden layers. '''
 def setInitialWeights(network):
-    initialWeight = 0.5
+    random.seed(10)
+    '''initialWeight = 0.5
     initialWeightsHidden = [initialWeight] * (len(network[0]) + 1)
     initialWeightsOutputs = [initialWeight] * (len(network[1]) + 1)
     for node in network[1]:
@@ -181,11 +183,24 @@ def setInitialWeights(network):
     for node in network[2]:
         node.batchSetWeights(initialWeightsOutputs)
 
+    initialWeightsHidden = []
+    for i in range(len(network[0])+1):
+        initialWeightsHidden[i] = random.random()
+    initialWeightsOutputs = []
+    for j in range(len(network[1])+1):
+        initialWeightsOutputs[i] = random.random()'''
+
+    for layer in range(1,len(network)):
+        for node in network[layer]:
+            weights = []
+            for i in range(len(network[layer-1])):
+                node.setWeight(random.random()/100,i)
+
     return None
 
 def setCondition(numIterations):
     print numIterations
-    epoch = 5 # Maximum number of iterations
+    epoch = 10 # Maximum number of iterations
     if numIterations >= epoch:
         return False
     else:
@@ -251,15 +266,16 @@ def backPropLearning(examples,network):
         iteration += 1
         condition = setCondition(iteration)
 
-    return True
+    return network
 
 
 def determineNumber(network, numBitmapDict):
     #make return int. currently returns str to see if multiple outputs are found
     # to have values of 1
     answerNumber = ""
-    for i in range(len(numBitmapDict[0].values())):
-            inputs[i].setValue(numBitmapDict[0][i])
+    print type(network)
+    for i in range(len(numBitmapDict.values())):
+        network[0][i].setValue(numBitmapDict[i])
         # Set up rest of the layers
     for layer in network[1:]:
         for node in layer:
@@ -268,9 +284,10 @@ def determineNumber(network, numBitmapDict):
             weightedInputs = node.calculateWeightedInputs()
             output = sigmoidFunction(weightedInputs)
             node.setOutput(output)
-    for outputNode in network[2]:
-        if outputNode.getOutput() == 1:
-            answerNumber = answerNumber + str(network.index[outputNode])
+    for outputNode in network[-1]:
+        #if outputNode.getOutput() == 1:
+        #    answerNumber = answerNumber + str(network.index[outputNode])
+        answerNumber += str(outputNode.getOutput())+","
     return answerNumber
 
 
@@ -287,12 +304,12 @@ def leaveOneOut(startNetwork, examples):
 
 
 def decreaseAlpha(alpha):
-    return float(alpha)
+    return float(alpha)*0.8
 
 def main():
     data = open('smallData.txt', 'r')
     data = data.readlines()
-    length = len(data)
+    length = len(data)/9
     counter = 1
     examplesList = []
     dict = {}
@@ -341,7 +358,7 @@ def main():
 
 
 
-
+    '''
     ##testing stuff
     testData = open('testData.txt', 'r')
     testData = data.readlines()
@@ -350,7 +367,7 @@ def main():
     for i in range(16):
         for j in range(0,16):
             testExample[16+j] = int(data[i][j])
-
-    print determineNumber(neuralNetwork, testExample)
+            '''
+    print determineNumber(neuralNetwork, examplesList[0][0])
 
 main()
