@@ -182,18 +182,31 @@ def testNumber(network,example):
 
     # print outputs
 
-    print "The answer is: ",
-    print example[1]
+    vector = []
 
-    print "The network gets: "
+    #print "The answer is: ",
+    #print example[1]
+
+    #print "The network gets: "
     for node in network[-1]:
-        print node.getOutput()
+        #print node.getOutput()
+        vector.append(node.getOutput())
+
+    return vector
 
 def leaveOneOut(network,examplesList):
     sucesses = 0
+    attempts = 0
     for example in examplesList:
+        print attempts
         trainingData = list(examplesList)
-        testData
+        testData = trainingData.pop(examplesList.index(example))
+        testNetwork = backPropLearning(trainingData,network)
+        vector = testNumber(testNetwork,testData)
+        if vector.index(1) == testData[1].index(1):
+            sucesses += 1
+        attempts += 1
+    print float(sucesses) / len(examplesList)
 
 def backPropLearning(examples,network):
 
@@ -348,8 +361,10 @@ def main():
 
     network = [inputs,hidden,outputs]
 
-    completedNetwork = backPropLearning(examplesList,network)
+    #completedNetwork = backPropLearning(examplesList,network)
 
-    testNumber(completedNetwork,testExample1)
+    leaveOneOut(network,examplesList)
+
+    #testNumber(completedNetwork,testExample1)
 
 main()
