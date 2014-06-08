@@ -167,6 +167,34 @@ def setInitialWeights(network):
 
     return None
 
+def testNumber(network,example):
+
+    # Set the inputs
+    for input in network[0]:
+        input.setValue(example[0][input.getIndex()])
+
+    # propogate forward
+
+    for layer in network[1:]:
+        for node in layer:
+            node.setWeightedInput()
+            node.setOutput()
+
+    # print outputs
+
+    print "The answer is: ",
+    print example[1]
+
+    print "The network gets: "
+    for node in network[-1]:
+        print node.getOutput()
+
+def leaveOneOut(network,examplesList):
+    sucesses = 0
+    for example in examplesList:
+        trainingData = list(examplesList)
+        testData
+
 def backPropLearning(examples,network):
 
     setInitialWeights(network)
@@ -221,9 +249,12 @@ def backPropLearning(examples,network):
         alpha = decreaseAlpha(alpha)
         iteration += 1
     print "finished"
-    for node in network[-1]:
-        print node.getOutput()
+    #for node in network[-1]:
+    #    print node.getOutput()
     #printEdges(network[1:])
+
+    return network
+
 def main():
     '''
     example1 = {}
@@ -247,7 +278,7 @@ def main():
 
     data = open('smallData.txt', 'r')
     data = data.readlines()
-    length = len(data)/9 + 17*6
+    length = len(data) #/9 + 17*6
     counter = 1
     examplesList = []
     dict = {}
@@ -264,7 +295,19 @@ def main():
             dict = {}
         counter+= 1
 
-    print examplesList[-1][1]
+    testExample1 = examplesList[-1]
+    testExample2 = examplesList[-2]
+    testExample3 = examplesList[-3]
+    testExample4 = examplesList[-4]
+    testExample5 = examplesList[-5]
+    testExample6 = examplesList[-6]
+    testExample7 = examplesList[-7]
+    testExample8 = examplesList[-8]
+    testExample9 = examplesList[-9]
+
+    examplesList = examplesList[0:100]
+
+    #print examplesList[-1][1]
 
     outputVector = [0] * 10
 
@@ -306,5 +349,7 @@ def main():
     network = [inputs,hidden,outputs]
 
     completedNetwork = backPropLearning(examplesList,network)
+
+    testNumber(completedNetwork,testExample1)
 
 main()
