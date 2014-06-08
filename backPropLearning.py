@@ -5,6 +5,7 @@ Uses the backwards propogation algorithm to build a neural network. This particu
 '''
 
 import math
+import random
 
 class inputNode:
     def __init__(self,inputValue):
@@ -50,7 +51,10 @@ class hiddenNode:
         for i in range(len(outputs)):
             sumI+= outputs[i].getWeights()[self.index]*outputs[i].getDelta()
         #self.delta = sigmoidDerivativeFunction(self.weightedInput)*sumI
-        return sigmoidDerivativeFunction(self.weightedInput)*sumI
+        print self.weightedInput
+        var = sigmoidDerivativeFunction(self.weightedInput)*sumI
+        #print var
+        return var
 
 
     def setWeight(self,weight,weightIndex):
@@ -173,18 +177,22 @@ def sigmoidDerivativeFunction(x):
 
 ''' This does not yet work with multiple hidden layers. '''
 def setInitialWeights(network):
-    initialWeight = 0.5
-    initialWeightsHidden = [initialWeight] * (len(network[0]) + 1)
-    initialWeightsOutputs = [initialWeight] * (len(network[1]) + 1)
-    for node in network[1]:
-        node.batchSetWeights(initialWeightsHidden)
-    for node in network[2]:
-        node.batchSetWeights(initialWeightsOutputs)
+    # initialWeight = 0.5
+    # initialWeightsHidden = [initialWeight] * (len(network[0]) + 1)
+    # initialWeightsOutputs = [initialWeight] * (len(network[1]) + 1)
+    # for node in network[1]:
+    #     node.batchSetWeights(initialWeightsHidden)
+    # for node in network[2]:
+    #     node.batchSetWeights(initialWeightsOutputs)
+    for layerIndex in range(1, len(network)):
+        for node in network[layerIndex]:
+            for i in range(len(node.getWeights())):
+                node.setWeight(random.random(),i)
 
     return None
 
 def setCondition(numIterations):
-    print numIterations
+    #print numIterations
     epoch = 5 # Maximum number of iterations
     if numIterations >= epoch:
         return False
@@ -216,10 +224,8 @@ def backPropLearning(examples,network):
             # set the inputs
             for i in range(len(example[0].values())):
                 inputs[i].setValue(example[0][i])
-
             # Set up rest of the layers
             for layer in network[1:]:
-
                 for node in layer:
                     for inputNumber in range(len(network[network.index(layer)-1])):
                         node.setInput(network[network.index(layer)-1][inputNumber].getOutput(),inputNumber+1) # The "+1" is because of the dummy input
@@ -227,6 +233,7 @@ def backPropLearning(examples,network):
                     output = sigmoidFunction(weightedInputs)
                     node.setOutput(output)
 
+            #calculate deltaj for output
             for node in outputs:
                 index = outputs.index(node)
                 node.setDelta(node.calculateDeltaJ(example,index))
@@ -245,13 +252,14 @@ def backPropLearning(examples,network):
                     for i in range(len(weights)):
                         newWeight = weights[i] + decreaseAlpha(alpha)*nodeInputs[i]*node.getDelta()
                         node.setWeight(newWeight,i)
+                        #print "oldWeight:",weights[i]," newWeight: ",newWeight
 
 
 
         iteration += 1
         condition = setCondition(iteration)
 
-    return True
+    return network
 
 
 def determineNumber(network, numBitmapDict):
@@ -297,7 +305,7 @@ def main():
     examplesList = []
     dict = {}
     yVal = 0
-    for i in range(0,length):
+    for i in range(0,17):
         if counter <17:
             for j in range(0,16):
                 dict[yVal*16+j] = int(data[i][j])
@@ -343,14 +351,14 @@ def main():
 
 
     ##testing stuff
-    testData = open('testData.txt', 'r')
-    testData = data.readlines()
-    length = len(testData)
-    testExample = {}
-    for i in range(16):
-        for j in range(0,16):
-            testExample[16+j] = int(data[i][j])
+    # testData = open('testData.txt', 'r')
+    # testData = data.readlines()
+    # length = len(testData)
+    # testExample = {}
+    # for i in range(16):
+    #     for j in range(0,16):
+    #         testExample[16+j] = int(data[i][j])
 
-    print determineNumber(neuralNetwork, testExample)
+    # print determineNumber(neuralNetwork, testExample)
 
 main()
