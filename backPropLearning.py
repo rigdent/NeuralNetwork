@@ -185,7 +185,7 @@ def setInitialWeights(network):
         for node in network[layer]:
             weights = []
             for i in range(len(network[layer-1])):
-                node.setWeight(random.random()/100,i)
+                node.setWeight(random.random()/10,i)
 
     return None
 
