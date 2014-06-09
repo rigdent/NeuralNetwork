@@ -26,12 +26,17 @@ class hiddenNode:
         self.input = 0
         self.output = 0
         self.deltaI = 0
+        self.previousWeights = [0]
 
     def setEdge(self,weight,node):
         self.edges.append([weight,node])
+        self.previousWeights.append(0)
 
     def updateEdgeWeight(self,index,weight):
         self.edges[index][0] = weight
+
+    def updateEdgeWeightMomentum(self,index,weight):
+        self.edges[index][0] = (self.edges[index][0] * 0.9) + weight
 
     def getEdge(self,index):
         return self.edges[index]
@@ -82,6 +87,9 @@ class outputNode:
 
     def updateEdgeWeight(self,index,weight):
         self.edges[index][0] = weight
+
+    def updateEdgeWeightMomentum(self,index,weight):
+        self.edges[index][0] = (self.edges[index][0] * 0.9) + weight
 
     def getEdge(self,index):
         return self.edges[index]
@@ -222,7 +230,7 @@ def backPropLearning(examples,network):
 
     iteration = 0
 
-    while iteration <= 100: # For now only iterate 5 times
+    while iteration <= 50: # For now only iterate 5 times
 
         for example in examples:
             # set the inputs
@@ -321,7 +329,7 @@ def main():
     testExample8 = examplesList[-8]
     testExample9 = examplesList[-9]
 
-    examplesList = examplesList[0:100]
+    examplesList = examplesList[0:10]
 
     #print examplesList[-1][1]
 
