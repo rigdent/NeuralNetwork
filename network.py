@@ -28,17 +28,17 @@ class hiddenNode:
         self.input = 0
         self.output = 0
         self.deltaI = 0
-        self.previousWeights = [0]
+        self.previousWeightUpdates = [0]
 
     def setEdge(self,weight,node):
         self.edges.append([weight,node])
-        self.previousWeights.append(0)
+        self.previousWeightUpdates.append(0)
 
     def updateEdgeWeight(self,index,weight):
         self.edges[index][0] = weight
 
     def updateEdgeWeightMomentum(self,index,weight):
-        self.edges[index][0] = (self.edges[index][0] * 0.9) + weight
+        self.edges[index][0] = (self.edges[index][0] * 0.9) + self.previousWeightUpdates[index]
 
     def getEdge(self,index):
         return self.edges[index]
@@ -75,6 +75,9 @@ class hiddenNode:
 
     def getDelta(self):
         return self.deltaI
+
+    def setPreviousWeightUpdate(self,index,previousWeight):
+        self.previousWeightUpdates[index] = previousWeight
 
 class outputNode:
     def __init__(self,index):
@@ -232,7 +235,7 @@ def backPropLearning(examples,network):
 
     iteration = 0
 
-    while iteration <= 50: # For now only iterate 5 times
+    while iteration <= 100: # For now only iterate 5 times
 
         for example in examples:
             # set the inputs
@@ -267,9 +270,9 @@ def backPropLearning(examples,network):
 
             for layer in network[1:]:
                 for node in layer:
-                    for edge in node.getEdges():
-                        edge[0] = edge[0] + ( alpha * edge[1].getOutput() * node.getDelta() )
-
+                    for edgeIndex in range(len(node.getEdges())):
+                        weightUpdate = node.getEdge(edgeIndex)[0] + ( alpha * node.getEdge(edgeIndex)[1].getOutput() * node.getDelta() )
+                        node.UpdateEdgeWeight(edgeIndex,weightUpdate)
             #printEdges(network[1:])
             #print '\n'
         alpha = decreaseAlpha(alpha)
@@ -331,7 +334,7 @@ def main():
     testExample8 = examplesList[-8]
     testExample9 = examplesList[-9]
 
-    examplesList = examplesList[0:10]
+    examplesList = examplesList[0:100]
 
     #print examplesList[-1][1]
 
