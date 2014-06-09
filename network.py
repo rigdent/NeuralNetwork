@@ -88,6 +88,7 @@ class outputNode:
         self.output = 0
         self.deltaJ = 0
         self.previousWeightUpdates = [0]
+        self.error = 0
 
 
     def setEdge(self,weight,node):
@@ -146,6 +147,7 @@ class outputNode:
 
     def calculateDeltaJ(self,example):
         self.deltaJ = sigmoidDerivativeFunction(self.input) * (example[1][self.index] - self.output)
+        self.error = example[1][self.index] - self.output
         return self.deltaJ
 
     def getDelta(self):
@@ -154,6 +156,9 @@ class outputNode:
     def setPreviousWeightUpdate(self,index,previousWeight):
         self.previousWeightUpdates[index] = previousWeight
         return None
+
+    def getError(self):
+        return self.error
 
 def sigmoidFunction(x):
     #print x
@@ -244,8 +249,10 @@ def backPropLearning(examples,network):
     alpha = 1 # Start learning rate at 1
 
     iteration = 0
-
-    while iteration <= 100: # For now only iterate 5 times
+    epoch = 100
+    condition = True
+    meanSquaredError = 0
+    while condition: # For now only iterate 5 times
 
         #print iteration
 
@@ -263,10 +270,14 @@ def backPropLearning(examples,network):
                     node.setOutput()
 
             # calculate delta J for output layer
-
+            error  = 0
             for node in network[-1]:
                 node.calculateDeltaJ(example)
+                error += node.getError()
             # calculate delta I for all hidden layers
+            previousMeanSquaredError = meanSquaredError
+            meanSquaredError = error**2 / len(network[-1])
+            #print meanSquaredError
 
             for layer in reversed(network[1:-1]):
                 previousLayer = network.index(layer) + 1 # This is the index of the previous layer
@@ -291,7 +302,13 @@ def backPropLearning(examples,network):
             #print '\n'
         alpha = decreaseAlpha(alpha)
         iteration += 1
+
+        if iteration >= epoch:
+            condition = False
+        #elif meanSquaredError < 0.001:
+        #    condition  = False
     print "finished"
+    print meanSquaredError
     #for node in network[-1]:
     #    print node.getOutput()
     #printEdges(network[1:])
