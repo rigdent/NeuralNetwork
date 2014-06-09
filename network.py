@@ -256,7 +256,6 @@ def kFoldCrossV(network,examplesList,numToCheck):
                 vectorIndex = networkOutputVector.index(1)
                 if vectorIndex == testExample[1].index(1):
                     sucesses += 1
-            print "sucesses: ",sucesses
 
     #this is the last loop that checks the leftover examples in one last case.
     testData = []
@@ -273,7 +272,6 @@ def kFoldCrossV(network,examplesList,numToCheck):
             vectorIndex = networkOutputVector.index(1)
             if vectorIndex == testExample[1].index(1):
                 sucesses += 1
-        print "sucesses: ",sucesses
     #return the percentage of sucesses.
     return float(sucesses)/len(examplesList)
 
@@ -447,5 +445,5 @@ The hidden and output nodes are initialized just with an index. They are also se
     #leaveOneOut(network,examplesList)
 
     print kFoldCrossV(network,examplesList,30)
-    
+
 main()
