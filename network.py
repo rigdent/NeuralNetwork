@@ -360,6 +360,7 @@ def backPropLearning(examples,network):
             condition  = False
     print "finished"
     print meanSquaredError
+    print iteration
     #for node in network[-1]:
     #    print node.getOutput()
     #printEdges(network[1:])
