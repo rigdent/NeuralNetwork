@@ -168,7 +168,7 @@ def printInputs(network):
     return None
 
 def decreaseAlpha(alpha):
-    return float(alpha)*0.9999999999
+    return float(alpha)*0.99
 
 def setInitialWeights(network):
     random.seed(10)
@@ -206,6 +206,56 @@ def testNumber(network,example):
         vector.append(node.getOutput())
 
     return vector
+
+
+
+def kFoldCrossV(network,examplesList,numToCheck):
+    #pick from list is used to select from examples randomly and keep track of what's been tested
+    pickFromList = range(len(examplesList))
+    sucesses = 0
+    #loops one less times than it needs to. i.e. if examples is 100 long and numToCheck is 30, it loops 3 times
+    #this is because the last test case only checks 10 examples instead of the 30 the other test cases check.
+    for i in range(len(examplesList)/numToCheck):
+        testData = []
+        trainingData = list(examplesList)
+        #add all the ones you want to check into a test list and pop them from the examples list
+        for j in range(numToCheck):
+            numberToTest = random.choice(pickFromList)
+            testIndex = pickFromList.index(numberToTest)
+            pickFromList.pop(testIndex)
+            testData.append(trainingData.pop(testIndex))
+        #make network using this shortened examples list
+        testNetwork = backPropLearning(trainingData,network)
+        #then test the data you kept out with it.
+        for testExample in testData:
+            networkOutputVector = testNumber(testNetwork, testExample)
+            if 1 in networkOutputVector:
+                vectorIndex = networkOutputVector.index(1)
+                if vectorIndex == testExample[1].index(1):
+                    sucesses += 1
+            print "sucesses: ",sucesses
+
+    #this is the last loop that checks the leftover examples in one last case.
+    testData = []
+    trainingData = list(examplesList)
+    for j in range((len(examplesList)/numToCheck)*numToCheck, len(examplesList)):
+        numberToTest = random.choice(pickFromList)
+        testIndex = pickFromList.index(numberToTest)
+        pickFromList.pop(testIndex)
+        testData.append(trainingData.pop(testIndex))
+    testNetwork = backPropLearning(trainingData,network)
+    for testExample in testData:
+        networkOutputVector = testNumber(testNetwork, testExample)
+        if 1 in networkOutputVector:
+            vectorIndex = networkOutputVector.index(1)
+            if vectorIndex == testExample[1].index(1):
+                sucesses += 1
+        print "sucesses: ",sucesses
+    #return the percentage of sucesses.
+    return float(sucesses)/len(examplesList)
+
+
+
 
 def leaveOneOut(network,examplesList):
     sucesses = 0
@@ -272,7 +322,7 @@ def backPropLearning(examples,network):
                 for node in layer:
                     for edgeIndex in range(len(node.getEdges())):
                         weightUpdate = node.getEdge(edgeIndex)[0] + ( alpha * node.getEdge(edgeIndex)[1].getOutput() * node.getDelta() )
-                        node.UpdateEdgeWeight(edgeIndex,weightUpdate)
+                        node.updateEdgeWeight(edgeIndex,weightUpdate)
             #printEdges(network[1:])
             #print '\n'
         alpha = decreaseAlpha(alpha)
@@ -285,26 +335,6 @@ def backPropLearning(examples,network):
     return network
 
 def main():
-    '''
-    example1 = {}
-    example1[0] = 0
-    example1[1] = 1
-
-    example2 = {}
-    example2[0] = 1
-    example2[1] = 1
-
-    example3 = {}
-    example3[0] = 0
-    example3[1] = 0
-
-    example4 = {}
-    example4[0] = 1
-    example4[1] = 0
-
-    exampleList = [[example4,(1,0)],[example1,(1,0)],[example3,(0,0)],[example2,(0,0)]]
-    '''
-
     data = open('smallData.txt', 'r')
     data = data.readlines()
     length = len(data) #/9 + 17*6
@@ -334,7 +364,7 @@ def main():
     testExample8 = examplesList[-8]
     testExample9 = examplesList[-9]
 
-    examplesList = examplesList[0:100]
+
 
     #print examplesList[-1][1]
 
@@ -379,10 +409,22 @@ def main():
 
     #test = examplesList.pop(6)
 
-    #completedNetwork = backPropLearning(examplesList,network)
+#     completedNetwork = backPropLearning(examplesList,network)
 
-    leaveOneOut(network,examplesList)
+#     testData = open('testData.txt', 'r')
+#     testData = testData.readlines()
+#     length = len(testData)
+#     testExample = {}
+#     testExampleForm = []
+#     for i in range(16):
+#         for j in range(0,16):
+#             testExample[j] = int(testData[i][j])
+
+    #leaveOneOut(network,examplesList)
+    print kFoldCrossV(network,examplesList,30)
 
     #print testNumber(completedNetwork,test)
+#     outputVectorTest = testNumber(completedNetwork, [testExample, 5])
+#     print outputVectorTest.index(1)
 
 main()
