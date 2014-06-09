@@ -305,8 +305,8 @@ def backPropLearning(examples,network):
 
         if iteration >= epoch:
             condition = False
-        #elif meanSquaredError < 0.001:
-        #    condition  = False
+        elif meanSquaredError < 0.00001:
+            condition  = False
     print "finished"
     print meanSquaredError
     #for node in network[-1]:
