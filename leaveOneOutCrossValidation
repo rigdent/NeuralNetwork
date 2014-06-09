@@ -1,0 +1,1999 @@
+eduroam-167-177:NeuralNetwork christopherwinter$ python network.py 
+2
+finished
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+eduroam-167-177:NeuralNetwork christopherwinter$ python network.py 
+2
+finished
+0.0502505244045
+0.00781109821425
+0.0408559877229
+0.100158171821
+0.0663212058744
+0.00524867458224
+0.0147434168569
+0.0779431116566
+0.0488640234974
+0.0254741444413
+eduroam-167-177:NeuralNetwork christopherwinter$ python network.py 
+2
+finished
+0.0145675740029
+0.000826002998397
+0.97257209217
+0.0194243226141
+2.0283592569e-06
+6.93772505744e-05
+0.0010735643629
+0.00512834942798
+0.000511673624781
+0.000274659356991
+eduroam-167-177:NeuralNetwork christopherwinter$ python network.py 
+4
+finished
+0.000517430121898
+0.0140518073536
+4.43823258984e-05
+1.62495135996e-06
+0.9822621065
+1.51526283122e-06
+0.0022042802414
+0.0131468705414
+0.0106522771104
+0.000232609323463
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+9
+finished
+0.000895653457785
+0.00562106498072
+0.000159309243286
+7.12830333448e-05
+0.0102842644079
+0.0115072497149
+0.000134144731258
+0.00945219801074
+0.00355933743451
+0.973695626757
+         465880039 function calls in 267.020 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.003    0.003  267.020  267.020 network.py:1(<module>)
+  2818304    0.572    0.000    0.572    0.000 network.py:10(setValue)
+   110090    0.101    0.000    0.206    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   110090    0.108    0.000    0.324    0.000 network.py:121(calculateDeltaJ)
+ 11119090    1.553    0.000    1.553    0.000 network.py:125(getDelta)
+  1981620    1.137    0.000    1.420    0.000 network.py:128(sigmoidFunction)
+283151480   41.310    0.000   41.310    0.000 network.py:13(getOutput)
+   660540    0.471    0.000    1.328    0.000 network.py:131(sigmoidDerivativeFunction)
+      101    0.001    0.000    0.001    0.000 network.py:149(decreaseAlpha)
+        1    0.008    0.008    0.013    0.013 network.py:152(setInitialWeights)
+  2818304    0.416    0.000    0.416    0.000 network.py:16(getIndex)
+        1  126.736  126.736  266.969  266.969 network.py:162(backPropLearning)
+        1    0.035    0.035  267.015  267.015 network.py:219(main)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   550500    0.098    0.000    0.098    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   550450    0.101    0.000    0.101    0.000 network.py:45(getInput)
+   550450   62.715    0.000   82.763    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   550450    0.496    0.000    1.077    0.000 network.py:55(setOutput)
+ 11009000    1.830    0.000    1.830    0.000 network.py:59(getOutput)
+   550450    4.945    0.000    7.601    0.000 network.py:62(calculateDeltaI)
+141465650   20.679    0.000   20.679    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5614600    0.791    0.000    0.791    0.000 network.py:89(getEdges)
+   110090    0.023    0.000    0.023    0.000 network.py:95(getInput)
+   110090    2.554    0.000    3.466    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x1057f6500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1981621    0.283    0.000    0.283    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    13725    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    11009    0.036    0.000    0.036    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+     1809    0.001    0.000    0.001    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 186, in main
+    code = compile(fp.read(), progname, 'exec')
+  File "network.py", line 113
+    return 0:
+            ^
+SyntaxError: invalid syntax
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+8
+finished
+0
+0
+0
+0
+0
+0
+0
+0
+1
+0
+         470153669 function calls in 278.508 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.001    0.001    0.001    0.001 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.002    0.002  278.508  278.508 network.py:1(<module>)
+  2844160    0.588    0.000    0.588    0.000 network.py:10(setValue)
+   111100    0.106    0.000    0.213    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   111100    0.111    0.000    0.332    0.000 network.py:129(calculateDeltaJ)
+285749200   43.415    0.000   43.415    0.000 network.py:13(getOutput)
+ 11221100    1.660    0.000    1.660    0.000 network.py:133(getDelta)
+  1999800    1.173    0.000    1.453    0.000 network.py:136(sigmoidFunction)
+   666600    0.476    0.000    1.358    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.001    0.000    0.001    0.000 network.py:157(decreaseAlpha)
+  2844160    0.430    0.000    0.430    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1  132.622  132.622  278.456  278.456 network.py:170(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+        1    0.035    0.035  278.503  278.503 network.py:227(main)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   555550    0.103    0.000    0.103    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   555500    0.106    0.000    0.106    0.000 network.py:45(getInput)
+   555500   64.924    0.000   85.924    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   555500    0.518    0.000    1.111    0.000 network.py:55(setOutput)
+ 11110000    1.907    0.000    1.907    0.000 network.py:59(getOutput)
+   555500    5.084    0.000    7.855    0.000 network.py:62(calculateDeltaI)
+142763500   21.418    0.000   21.418    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5666110    0.833    0.000    0.833    0.000 network.py:89(getEdges)
+   111100    0.024    0.000    0.024    0.000 network.py:95(getInput)
+   111100    2.629    0.000    3.572    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.003    0.003 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x106f98500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1999801    0.280    0.000    0.280    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    13726    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    11110    0.038    0.000    0.038    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+     1825    0.001    0.000    0.001    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+1
+finished
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+         474427299 function calls in 270.440 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.003    0.003  270.440  270.440 network.py:1(<module>)
+  2870016    0.583    0.000    0.583    0.000 network.py:10(setValue)
+   112110    0.099    0.000    0.205    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   112110    0.106    0.000    0.323    0.000 network.py:129(calculateDeltaJ)
+288346920   42.226    0.000   42.226    0.000 network.py:13(getOutput)
+ 11323110    1.557    0.000    1.557    0.000 network.py:133(getDelta)
+  2017980    1.128    0.000    1.416    0.000 network.py:136(sigmoidFunction)
+   672660    0.462    0.000    1.322    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  2870016    0.413    0.000    0.413    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1  128.727  128.727  270.387  270.387 network.py:170(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+        1    0.036    0.036  270.435  270.435 network.py:227(main)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   560600    0.098    0.000    0.098    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   560550    0.102    0.000    0.102    0.000 network.py:45(getInput)
+   560550   62.993    0.000   83.445    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   560550    0.496    0.000    1.072    0.000 network.py:55(setOutput)
+ 11211000    1.843    0.000    1.843    0.000 network.py:59(getOutput)
+   560550    5.001    0.000    7.652    0.000 network.py:62(calculateDeltaI)
+144061350   20.866    0.000   20.866    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5717620    0.796    0.000    0.796    0.000 network.py:89(getEdges)
+   112110    0.023    0.000    0.023    0.000 network.py:95(getInput)
+   112110    2.531    0.000    3.442    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x106390500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  2017981    0.288    0.000    0.288    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    13727    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    11211    0.034    0.000    0.034    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+     1841    0.001    0.000    0.001    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+0
+finished
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+         427431750 function calls in 257.388 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.018    0.018    0.018    0.018 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.016    0.016  257.388  257.388 network.py:1(<module>)
+  2585600    0.538    0.000    0.538    0.000 network.py:10(setValue)
+   101000    0.094    0.000    0.193    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   101000    0.100    0.000    0.302    0.000 network.py:129(calculateDeltaJ)
+259772000   40.040    0.000   40.040    0.000 network.py:13(getOutput)
+ 10201000    1.459    0.000    1.459    0.000 network.py:133(getDelta)
+  1818000    1.069    0.000    1.348    0.000 network.py:136(sigmoidFunction)
+   606000    0.431    0.000    1.233    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.001    0.000    0.001    0.000 network.py:157(decreaseAlpha)
+  2585600    0.393    0.000    0.393    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1  124.339  124.339  257.022  257.022 network.py:170(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+        1    0.274    0.274  257.314  257.314 network.py:227(main)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   505050    0.101    0.000    0.101    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505000    0.097    0.000    0.097    0.000 network.py:45(getInput)
+   505000   58.869    0.000   78.061    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505000    0.471    0.000    1.035    0.000 network.py:55(setOutput)
+ 10100000    1.740    0.000    1.740    0.000 network.py:59(getOutput)
+   505000    4.716    0.000    7.200    0.000 network.py:62(calculateDeltaI)
+129785000   19.071    0.000   19.071    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.751    0.000    0.751    0.000 network.py:89(getEdges)
+   101000    0.021    0.000    0.021    0.000 network.py:95(getInput)
+   101000    2.396    0.000    3.251    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.040    0.040    0.059    0.059 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x1032b6500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818001    0.279    0.000    0.279    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.034    0.000    0.034    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+0
+^C         10873148 function calls in 6.534 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.001    0.001 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.001    0.001    6.534    6.534 network.py:1(<module>)
+    65536    0.013    0.000    0.013    0.000 network.py:10(setValue)
+     2550    0.002    0.000    0.005    0.000 network.py:105(setOutput)
+     2550    0.002    0.000    0.008    0.000 network.py:129(calculateDeltaJ)
+  6570844    0.959    0.000    0.959    0.000 network.py:13(getOutput)
+   257550    0.036    0.000    0.036    0.000 network.py:133(getDelta)
+    45947    0.027    0.000    0.033    0.000 network.py:136(sigmoidFunction)
+    15300    0.011    0.000    0.031    0.000 network.py:139(sigmoidDerivativeFunction)
+        2    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+    65536    0.010    0.000    0.010    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1    2.948    2.948    6.197    6.197 network.py:188(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.277    0.277    6.492    6.492 network.py:246(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+    12800    0.002    0.000    0.002    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+    12797    0.002    0.000    0.002    0.000 network.py:45(getInput)
+    12798    1.449    0.000    1.913    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+    12797    0.012    0.000    0.025    0.000 network.py:55(setOutput)
+   255000    0.042    0.000    0.042    0.000 network.py:59(getOutput)
+    12750    0.114    0.000    0.175    0.000 network.py:62(calculateDeltaI)
+  3276750    0.470    0.000    0.470    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+   130060    0.018    0.000    0.018    0.000 network.py:89(getEdges)
+     2550    0.001    0.000    0.001    0.000 network.py:95(getInput)
+     2550    0.059    0.000    0.080    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.041    0.041    0.042    0.042 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x101a7b500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+    45948    0.006    0.000    0.006    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+      255    0.001    0.000    0.001    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.008    0.000    0.008    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 335, in <module>
+    main()
+  File "network.py", line 331, in main
+    completedNetwork = backPropLearning(examplesList,network)
+  File "network.py", line 210, in backPropLearning
+    node.setWeightedInput()
+  File "network.py", line 51, in setWeightedInput
+    weightedInput += edge[0] * edge[1].getOutput()
+  File "network.py", line 13, in getOutput
+    def getOutput(self):
+KeyboardInterrupt
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+         427431741 function calls in 250.033 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.000    0.000  250.033  250.033 network.py:1(<module>)
+  2585600    0.526    0.000    0.526    0.000 network.py:10(setValue)
+   101000    0.096    0.000    0.197    0.000 network.py:105(setOutput)
+   101000    0.100    0.000    0.301    0.000 network.py:129(calculateDeltaJ)
+259772000   38.459    0.000   38.459    0.000 network.py:13(getOutput)
+ 10201000    1.465    0.000    1.465    0.000 network.py:133(getDelta)
+  1818000    1.068    0.000    1.324    0.000 network.py:136(sigmoidFunction)
+   606000    0.434    0.000    1.225    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.001    0.000    0.001    0.000 network.py:157(decreaseAlpha)
+  2585600    0.383    0.000    0.383    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.000    0.000 network.py:170(testNumber)
+        1  118.808  118.808  249.744  249.744 network.py:192(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.269    0.269  250.031  250.031 network.py:250(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   505050    0.093    0.000    0.093    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505000    0.096    0.000    0.096    0.000 network.py:45(getInput)
+   505000   58.774    0.000   77.447    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505000    0.473    0.000    1.022    0.000 network.py:55(setOutput)
+ 10100000    1.728    0.000    1.728    0.000 network.py:59(getOutput)
+   505000    4.619    0.000    7.100    0.000 network.py:62(calculateDeltaI)
+129785000   19.162    0.000   19.162    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.743    0.000    0.743    0.000 network.py:89(getEdges)
+   101000    0.021    0.000    0.021    0.000 network.py:95(getInput)
+   101000    2.395    0.000    3.254    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x10c819500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818001    0.256    0.000    0.256    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.033    0.000    0.033    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 339, in <module>
+    main()
+  File "network.py", line 337, in main
+    testNumber(completedNetwork,testExample)
+  File "network.py", line 173, in testNumber
+    for input in network[0]:
+TypeError: 'NoneType' object has no attribute '__getitem__'
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+         427431740 function calls in 245.010 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.001    0.001    0.001    0.001 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.014    0.014  245.010  245.010 network.py:1(<module>)
+  2585600    0.524    0.000    0.524    0.000 network.py:10(setValue)
+   101000    0.094    0.000    0.193    0.000 network.py:105(setOutput)
+   101000    0.100    0.000    0.300    0.000 network.py:129(calculateDeltaJ)
+259772000   37.690    0.000   37.690    0.000 network.py:13(getOutput)
+ 10201000    1.415    0.000    1.415    0.000 network.py:133(getDelta)
+  1818000    1.086    0.000    1.334    0.000 network.py:136(sigmoidFunction)
+   606000    0.421    0.000    1.223    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.001    0.000    0.001    0.000 network.py:157(decreaseAlpha)
+  2585600    0.379    0.000    0.379    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.012    0.012 network.py:160(setInitialWeights)
+        1  116.617  116.617  244.689  244.689 network.py:192(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.262    0.262  244.968  244.968 network.py:252(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+   505050    0.091    0.000    0.091    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505000    0.093    0.000    0.093    0.000 network.py:45(getInput)
+   505000   57.389    0.000   75.663    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505000    0.475    0.000    1.024    0.000 network.py:55(setOutput)
+ 10100000    1.668    0.000    1.668    0.000 network.py:59(getOutput)
+   505000    4.562    0.000    6.994    0.000 network.py:62(calculateDeltaI)
+129785000   18.716    0.000   18.716    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.728    0.000    0.728    0.000 network.py:89(getEdges)
+   101000    0.023    0.000    0.023    0.000 network.py:95(getInput)
+   101000    2.323    0.000    3.153    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.028    0.028    0.028    0.028 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x10249c500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818001    0.248    0.000    0.248    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.035    0.000    0.035    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 349, in <module>
+    main()
+  File "network.py", line 347, in main
+    testNumber(completedNetwork,testExample)
+NameError: global name 'testExample' is not defined
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+The answer is:  5
+The network gets: 
+0
+0
+0
+0
+0
+1
+0
+0
+0
+0
+         427445923 function calls in 243.878 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.003    0.003  243.878  243.878 network.py:1(<module>)
+  2585856    0.546    0.000    0.546    0.000 network.py:10(setValue)
+   101010    0.092    0.000    0.186    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   101000    0.098    0.000    0.300    0.000 network.py:129(calculateDeltaJ)
+259784860   36.877    0.000   36.877    0.000 network.py:13(getOutput)
+ 10201000    1.413    0.000    1.413    0.000 network.py:133(getDelta)
+  1818060    1.056    0.000    1.315    0.000 network.py:136(sigmoidFunction)
+   606000    0.442    0.000    1.253    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.001    0.000    0.001    0.000 network.py:157(decreaseAlpha)
+  2585856    0.372    0.000    0.372    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.009    0.009 network.py:170(testNumber)
+        1  116.522  116.522  243.581  243.581 network.py:192(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.263    0.263  243.872  243.872 network.py:252(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   505050    0.088    0.000    0.088    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505050    0.092    0.000    0.092    0.000 network.py:45(getInput)
+   505050   57.597    0.000   75.471    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505050    0.458    0.000    0.980    0.000 network.py:55(setOutput)
+ 10100500    1.625    0.000    1.625    0.000 network.py:59(getOutput)
+   505000    4.540    0.000    7.001    0.000 network.py:62(calculateDeltaI)
+129785000   18.372    0.000   18.372    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.722    0.000    0.722    0.000 network.py:89(getEdges)
+   101010    0.021    0.000    0.021    0.000 network.py:95(getInput)
+   101010    2.352    0.000    3.160    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x10731c500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818061    0.259    0.000    0.259    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.033    0.000    0.033    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+finished
+         850560628 function calls in 461.777 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.001    0.001    0.001    0.001 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.000    0.000  461.777  461.777 network.py:1(<module>)
+  5145600    0.974    0.000    0.974    0.000 network.py:10(setValue)
+   201000    0.167    0.000    0.339    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   200990    0.176    0.000    0.540    0.000 network.py:129(calculateDeltaJ)
+516959140   74.074    0.000   74.074    0.000 network.py:13(getOutput)
+ 20299990    2.685    0.000    2.685    0.000 network.py:133(getDelta)
+  3617880    1.880    0.000    2.302    0.000 network.py:136(sigmoidFunction)
+  1205940    0.792    0.000    2.239    0.000 network.py:139(sigmoidDerivativeFunction)
+      202    0.001    0.000    0.001    0.000 network.py:157(decreaseAlpha)
+  5145600    0.674    0.000    0.674    0.000 network.py:16(getIndex)
+        2    0.015    0.008    0.025    0.013 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.008    0.008 network.py:170(testNumber)
+        1    0.000    0.000  231.299  231.299 network.py:195(leaveOneOut)
+        2  219.004  109.502  461.458  230.729 network.py:206(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.273    0.273  461.757  461.757 network.py:266(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    25700    0.007    0.000    0.007    0.000 network.py:33(updateEdgeWeight)
+  1005050    0.159    0.000    0.159    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+  1005000    0.172    0.000    0.172    0.000 network.py:45(getInput)
+  1005000  106.642    0.000  143.953    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+  1005000    0.844    0.000    1.736    0.000 network.py:55(setOutput)
+ 20099500    3.076    0.000    3.076    0.000 network.py:59(getOutput)
+  1004950    8.505    0.000   13.129    0.000 network.py:62(calculateDeltaI)
+258272150   35.354    0.000   35.354    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+     1020    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+ 10250510    1.455    0.000    1.455    0.000 network.py:89(getEdges)
+   201000    0.038    0.000    0.038    0.000 network.py:95(getInput)
+   201000    4.323    0.000    5.856    0.000 network.py:98(setWeightedInput)
+        3    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.019    0.019    0.020    0.020 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        3    0.000    0.000    0.000    0.000 {function seed at 0x102177578}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+      122    0.000    0.000    0.000    0.000 {len}
+  3617881    0.422    0.000    0.422    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14572    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    20100    0.026    0.000    0.026    0.000 {method 'index' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+    26720    0.002    0.000    0.002    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15260    0.007    0.000    0.007    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 365, in <module>
+    main()
+  File "network.py", line 361, in main
+    leaveOneOut(network,examplesList)
+  File "network.py", line 202, in leaveOneOut
+    if vector.index(1) == testData[1].index(1):
+AttributeError: 'NoneType' object has no attribute 'index'
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+^C         27197682 function calls in 15.041 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.021    0.021    0.021    0.021 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.033    0.033   15.041   15.041 network.py:1(<module>)
+   164352    0.031    0.000    0.031    0.000 network.py:10(setValue)
+     6410    0.005    0.000    0.011    0.000 network.py:105(setOutput)
+     6410    0.006    0.000    0.017    0.000 network.py:129(calculateDeltaJ)
+ 16490632    2.274    0.000    2.274    0.000 network.py:13(getOutput)
+   647410    0.086    0.000    0.086    0.000 network.py:133(getDelta)
+   115396    0.060    0.000    0.074    0.000 network.py:136(sigmoidFunction)
+    38460    0.026    0.000    0.072    0.000 network.py:139(sigmoidDerivativeFunction)
+        6    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+   164352    0.022    0.000    0.022    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1    6.947    6.947   14.587   14.587 network.py:211(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.271    0.271   14.876   14.876 network.py:271(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+    32100    0.005    0.000    0.005    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+    32066    0.006    0.000    0.006    0.000 network.py:45(getInput)
+    32066    3.393    0.000    4.495    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+    32066    0.027    0.000    0.057    0.000 network.py:55(setOutput)
+   641000    0.099    0.000    0.099    0.000 network.py:59(getOutput)
+    32050    0.271    0.000    0.416    0.000 network.py:62(calculateDeltaI)
+  8236850    1.120    0.000    1.120    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+   326920    0.043    0.000    0.043    0.000 network.py:89(getEdges)
+     6410    0.001    0.000    0.001    0.000 network.py:95(getInput)
+     6410    0.137    0.000    0.186    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.110    0.110    0.131    0.131 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x10a9d2500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+   115397    0.014    0.000    0.014    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+      641    0.002    0.000    0.002    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.002    0.002    0.002    0.002 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 370, in <module>
+    main()
+  File "network.py", line 364, in main
+    completedNetwork = backPropLearning(examplesList,network)
+  File "network.py", line 234, in backPropLearning
+    node.setOutput()
+  File "network.py", line 56, in setOutput
+    self.output = sigmoidFunction(self.getInput())
+  File "network.py", line 137, in sigmoidFunction
+    return 1 / (1 + math.exp(-x))
+KeyboardInterrupt
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+0
+^C         193744262 function calls in 104.167 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.000    0.000  104.167  104.167 network.py:1(<module>)
+  1171968    0.221    0.000    0.221    0.000 network.py:10(setValue)
+    45770    0.040    0.000    0.080    0.000 network.py:105(setOutput)
+    45770    0.041    0.000    0.124    0.000 network.py:129(calculateDeltaJ)
+117727075   16.322    0.000   16.322    0.000 network.py:13(getOutput)
+  4622770    0.608    0.000    0.608    0.000 network.py:133(getDelta)
+   823885    0.435    0.000    0.538    0.000 network.py:136(sigmoidFunction)
+   274620    0.178    0.000    0.506    0.000 network.py:139(sigmoidDerivativeFunction)
+       46    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  1171968    0.160    0.000    0.160    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.012    0.012 network.py:160(setInitialWeights)
+        1    0.000    0.000  103.881  103.881 network.py:197(leaveOneOut)
+        1   49.440   49.440  103.881  103.881 network.py:211(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.266    0.266  104.164  104.164 network.py:271(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+   228900    0.040    0.000    0.040    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   228875    0.040    0.000    0.040    0.000 network.py:45(getInput)
+   228876   24.127    0.000   32.018    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   228875    0.190    0.000    0.409    0.000 network.py:55(setOutput)
+  4577000    0.712    0.000    0.712    0.000 network.py:59(getOutput)
+   228850    1.939    0.000    2.964    0.000 network.py:62(calculateDeltaI)
+ 58814450    7.970    0.000    7.970    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  2334280    0.309    0.000    0.309    0.000 network.py:89(getEdges)
+    45770    0.009    0.000    0.009    0.000 network.py:95(getInput)
+    45770    0.973    0.000    1.325    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x104b66500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+   823886    0.102    0.000    0.102    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     4578    0.013    0.000    0.013    0.000 {method 'index' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 370, in <module>
+    main()
+  File "network.py", line 366, in main
+    leaveOneOut(network,examplesList)
+  File "network.py", line 204, in leaveOneOut
+    testNetwork = backPropLearning(trainingData,network)
+  File "network.py", line 233, in backPropLearning
+    node.setWeightedInput()
+  File "network.py", line 51, in setWeightedInput
+    weightedInput += edge[0] * edge[1].getOutput()
+KeyboardInterrupt
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+0
+finished
+1
+1
+finished
+2
+2
+finished
+3
+3
+finished
+4
+4
+finished
+5
+5
+finished
+6
+6
+finished
+         2961945658 function calls in 1600.542 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.000    0.000 1600.542 1600.542 network.py:1(<module>)
+ 17920000    3.378    0.000    3.378    0.000 network.py:10(setValue)
+   700000    0.607    0.000    1.231    0.000 network.py:105(setOutput)
+       70    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   699930    0.628    0.000    1.917    0.000 network.py:129(calculateDeltaJ)
+1800309980  251.145    0.000  251.145    0.000 network.py:13(getOutput)
+ 70692930    9.526    0.000    9.526    0.000 network.py:133(getDelta)
+ 12599160    6.661    0.000    8.262    0.000 network.py:136(sigmoidFunction)
+  4199580    2.872    0.000    7.981    0.000 network.py:139(sigmoidDerivativeFunction)
+      707    0.003    0.000    0.003    0.000 network.py:157(decreaseAlpha)
+ 17920000    2.432    0.000    2.432    0.000 network.py:16(getIndex)
+        7    0.052    0.007    0.086    0.012 network.py:160(setInitialWeights)
+        7    0.002    0.000    0.054    0.008 network.py:170(testNumber)
+        1    0.000    0.000 1600.261 1600.261 network.py:197(leaveOneOut)
+        7  760.315  108.616 1600.206  228.601 network.py:212(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.261    0.261 1600.539 1600.539 network.py:272(main)
+    12800    0.007    0.000    0.009    0.000 network.py:30(setEdge)
+    89950    0.025    0.000    0.025    0.000 network.py:33(updateEdgeWeight)
+  3500000    0.564    0.000    0.564    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+  3500000    0.618    0.000    0.618    0.000 network.py:45(getInput)
+  3500000  372.038    0.000  494.739    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+  3500000    2.912    0.000    6.199    0.000 network.py:55(setOutput)
+ 69996500   10.971    0.000   10.971    0.000 network.py:59(getOutput)
+  3499650   29.968    0.000   46.087    0.000 network.py:62(calculateDeltaI)
+899410050  123.797    0.000  123.797    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+     3570    0.001    0.000    0.001    0.000 network.py:83(updateEdgeWeight)
+ 35696500    4.845    0.000    4.845    0.000 network.py:89(getEdges)
+   700000    0.139    0.000    0.139    0.000 network.py:95(getInput)
+   700000   14.987    0.000   20.465    0.000 network.py:98(setWeightedInput)
+        8    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        8    0.000    0.000    0.000    0.000 {function seed at 0x102e9d500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+      422    0.000    0.000    0.000    0.000 {len}
+ 12599161    1.601    0.000    1.601    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14632    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    70013    0.164    0.000    0.164    0.000 {method 'index' of 'list' objects}
+        7    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+    93520    0.007    0.000    0.007    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15560    0.008    0.000    0.008    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 371, in <module>
+    main()
+  File "network.py", line 367, in main
+    leaveOneOut(network,examplesList)
+  File "network.py", line 206, in leaveOneOut
+    if vector.index(1) == testData[1].index(1):
+ValueError: 1 is not in list
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+^C         259921198 function calls in 141.505 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.005    0.005    0.005    0.005 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.009    0.009  141.505  141.505 network.py:1(<module>)
+  1572352    0.310    0.000    0.310    0.000 network.py:10(setValue)
+    61410    0.052    0.000    0.107    0.000 network.py:105(setOutput)
+    61410    0.054    0.000    0.166    0.000 network.py:129(calculateDeltaJ)
+157952557   22.041    0.000   22.041    0.000 network.py:13(getOutput)
+  6202410    0.820    0.000    0.820    0.000 network.py:133(getDelta)
+  1105403    0.592    0.000    0.723    0.000 network.py:136(sigmoidFunction)
+   368460    0.240    0.000    0.687    0.000 network.py:139(sigmoidDerivativeFunction)
+       61    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  1572352    0.266    0.000    0.266    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.012    0.012 network.py:160(setInitialWeights)
+        1   67.208   67.208  141.191  141.191 network.py:212(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.261    0.261  141.471  141.471 network.py:272(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+   307100    0.050    0.000    0.050    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   307073    0.054    0.000    0.054    0.000 network.py:45(getInput)
+   307074   32.875    0.000   43.618    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   307073    0.257    0.000    0.546    0.000 network.py:55(setOutput)
+  6141000    0.961    0.000    0.961    0.000 network.py:59(getOutput)
+   307050    2.624    0.000    4.011    0.000 network.py:62(calculateDeltaI)
+ 78911850   10.883    0.000   10.883    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  3131920    0.417    0.000    0.417    0.000 network.py:89(getEdges)
+    61410    0.012    0.000    0.012    0.000 network.py:95(getInput)
+    61410    1.319    0.000    1.797    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.020    0.020    0.025    0.025 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x1047ee500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1105404    0.131    0.000    0.131    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14562    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     6141    0.014    0.000    0.014    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.002    0.002    0.002    0.002 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 162, in _run_module_as_main
+    "__main__", fname, loader, pkg_name)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/runpy.py", line 72, in _run_code
+    exec code in run_globals
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 199, in <module>
+    main()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 192, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 49, in runctx
+    prof = prof.runctx(statement, globals, locals)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/cProfile.py", line 140, in runctx
+    exec cmd in globals, locals
+  File "network.py", line 371, in <module>
+    main()
+  File "network.py", line 365, in main
+    completedNetwork = backPropLearning(examplesList,network)
+  File "network.py", line 234, in backPropLearning
+    node.setWeightedInput()
+  File "network.py", line 51, in setWeightedInput
+    weightedInput += edge[0] * edge[1].getOutput()
+  File "network.py", line 13, in getOutput
+    def getOutput(self):
+KeyboardInterrupt
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+[0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+         427445933 function calls in 230.805 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.003    0.003  230.805  230.805 network.py:1(<module>)
+  2585856    0.484    0.000    0.484    0.000 network.py:10(setValue)
+   101010    0.085    0.000    0.175    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   101000    0.089    0.000    0.274    0.000 network.py:129(calculateDeltaJ)
+259784860   36.306    0.000   36.306    0.000 network.py:13(getOutput)
+ 10201000    1.349    0.000    1.349    0.000 network.py:133(getDelta)
+  1818060    0.956    0.000    1.193    0.000 network.py:136(sigmoidFunction)
+   606000    0.402    0.000    1.140    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  2585856    0.347    0.000    0.347    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.012    0.012 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.008    0.008 network.py:170(testNumber)
+        1  109.521  109.521  230.509  230.509 network.py:212(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.265    0.265  230.799  230.799 network.py:272(main)
+    12800    0.007    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+   505050    0.083    0.000    0.083    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505050    0.089    0.000    0.089    0.000 network.py:45(getInput)
+   505050   53.711    0.000   71.510    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505050    0.419    0.000    0.892    0.000 network.py:55(setOutput)
+ 10100500    1.565    0.000    1.565    0.000 network.py:59(getOutput)
+   505000    4.262    0.000    6.555    0.000 network.py:62(calculateDeltaI)
+129785000   17.720    0.000   17.720    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.687    0.000    0.687    0.000 network.py:89(getEdges)
+   101010    0.020    0.000    0.020    0.000 network.py:95(getInput)
+   101010    2.155    0.000    2.940    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x1058b5500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818061    0.237    0.000    0.237    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14572    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.018    0.000    0.018    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+         427445933 function calls in 233.082 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.001    0.001 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.014    0.014  233.082  233.082 network.py:1(<module>)
+  2585856    0.482    0.000    0.482    0.000 network.py:10(setValue)
+   101010    0.087    0.000    0.174    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   101000    0.093    0.000    0.276    0.000 network.py:129(calculateDeltaJ)
+259784860   35.894    0.000   35.894    0.000 network.py:13(getOutput)
+ 10201000    1.354    0.000    1.354    0.000 network.py:133(getDelta)
+  1818060    0.946    0.000    1.162    0.000 network.py:136(sigmoidFunction)
+   606000    0.400    0.000    1.129    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  2585856    0.339    0.000    0.339    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.012    0.012 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.008    0.008 network.py:170(testNumber)
+        1  111.169  111.169  232.786  232.786 network.py:212(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.254    0.254  233.065  233.065 network.py:272(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+   505050    0.081    0.000    0.081    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505050    0.089    0.000    0.089    0.000 network.py:45(getInput)
+   505050   54.602    0.000   72.082    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505050    0.433    0.000    0.887    0.000 network.py:55(setOutput)
+ 10100500    1.558    0.000    1.558    0.000 network.py:59(getOutput)
+   505000    4.302    0.000    6.586    0.000 network.py:62(calculateDeltaI)
+129785000   17.857    0.000   17.857    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.686    0.000    0.686    0.000 network.py:89(getEdges)
+   101010    0.019    0.000    0.019    0.000 network.py:95(getInput)
+   101010    2.154    0.000    2.931    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.003    0.003 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x10abf7500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818061    0.216    0.000    0.216    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14572    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.019    0.000    0.019    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+[0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+         427445933 function calls in 238.453 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.001    0.001    0.001    0.001 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.016    0.016  238.453  238.453 network.py:1(<module>)
+  2585856    0.501    0.000    0.501    0.000 network.py:10(setValue)
+   101010    0.086    0.000    0.173    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+   101000    0.089    0.000    0.276    0.000 network.py:129(calculateDeltaJ)
+259784860   39.959    0.000   39.959    0.000 network.py:13(getOutput)
+ 10201000    1.396    0.000    1.396    0.000 network.py:133(getDelta)
+  1818060    0.966    0.000    1.180    0.000 network.py:136(sigmoidFunction)
+   606000    0.404    0.000    1.149    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  2585856    0.364    0.000    0.364    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.013    0.013 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.008    0.008 network.py:170(testNumber)
+        1  112.125  112.125  238.147  238.147 network.py:212(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.261    0.261  238.434  238.434 network.py:272(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.004    0.000    0.004    0.000 network.py:33(updateEdgeWeight)
+   505050    0.087    0.000    0.087    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   505050    0.089    0.000    0.089    0.000 network.py:45(getInput)
+   505050   54.287    0.000   74.143    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   505050    0.421    0.000    0.877    0.000 network.py:55(setOutput)
+ 10100500    1.688    0.000    1.688    0.000 network.py:59(getOutput)
+   505000    4.294    0.000    6.665    0.000 network.py:62(calculateDeltaI)
+129785000   18.248    0.000   18.248    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5151010    0.726    0.000    0.726    0.000 network.py:89(getEdges)
+   101010    0.019    0.000    0.019    0.000 network.py:95(getInput)
+   101010    2.160    0.000    3.002    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.003    0.003 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x109f86500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1818061    0.214    0.000    0.214    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14572    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10100    0.019    0.000    0.019    0.000 {method 'index' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.008    0.000    0.008    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+finished
+[0, 0, 0, 0, 0.4117040104568144, 0, 0, 0, 0, 0]
+         423172321 function calls in 230.132 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.000    0.000    0.000    0.000 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.003    0.003  230.132  230.132 network.py:1(<module>)
+  2560000    0.485    0.000    0.485    0.000 network.py:10(setValue)
+   100000    0.083    0.000    0.169    0.000 network.py:105(setOutput)
+       10    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+    99990    0.089    0.000    0.272    0.000 network.py:129(calculateDeltaJ)
+257187140   36.395    0.000   36.395    0.000 network.py:13(getOutput)
+ 10098990    1.364    0.000    1.364    0.000 network.py:133(getDelta)
+  1799880    0.935    0.000    1.149    0.000 network.py:136(sigmoidFunction)
+   599940    0.403    0.000    1.124    0.000 network.py:139(sigmoidDerivativeFunction)
+      101    0.000    0.000    0.000    0.000 network.py:157(decreaseAlpha)
+  2560000    0.344    0.000    0.344    0.000 network.py:16(getIndex)
+        1    0.008    0.008    0.012    0.012 network.py:160(setInitialWeights)
+        1    0.000    0.000    0.008    0.008 network.py:170(testNumber)
+        1  108.281  108.281  229.849  229.849 network.py:212(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.254    0.254  230.127  230.127 network.py:272(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+    12850    0.003    0.000    0.003    0.000 network.py:33(updateEdgeWeight)
+   500000    0.079    0.000    0.079    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+   500000    0.086    0.000    0.086    0.000 network.py:45(getInput)
+   500000   54.158    0.000   72.051    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+   500000    0.415    0.000    0.863    0.000 network.py:55(setOutput)
+  9999500    1.571    0.000    1.571    0.000 network.py:59(getOutput)
+   499950    4.251    0.000    6.543    0.000 network.py:62(calculateDeltaI)
+128487150   17.814    0.000   17.814    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+      510    0.000    0.000    0.000    0.000 network.py:83(updateEdgeWeight)
+  5099500    0.693    0.000    0.693    0.000 network.py:89(getEdges)
+   100000    0.019    0.000    0.019    0.000 network.py:95(getInput)
+   100000    2.144    0.000    2.935    0.000 network.py:98(setWeightedInput)
+        2    0.000    0.000    0.000    0.000 random.py:100(seed)
+        1    0.002    0.002    0.002    0.002 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+        2    0.000    0.000    0.000    0.000 {function seed at 0x1028ec500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+       62    0.000    0.000    0.000    0.000 {len}
+  1799881    0.215    0.000    0.215    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    14572    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     9999    0.020    0.000    0.020    0.000 {method 'index' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+    13360    0.001    0.000    0.001    0.000 {method 'random' of '_random.Random' objects}
+        1    0.001    0.001    0.001    0.001 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    15200    0.007    0.000    0.007    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ python -m cProfile network.py 
+0
+finished
+1
+1
+finished
+2
+2
+finished
+3
+3
+finished
+4
+4
+finished
+5
+5
+finished
+6
+6
+finished
+6
+7
+finished
+7
+8
+finished
+8
+9
+finished
+8
+10
+finished
+9
+11
+finished
+9
+12
+finished
+10
+13
+finished
+11
+14
+finished
+12
+15
+finished
+13
+16
+finished
+14
+17
+finished
+15
+18
+finished
+16
+19
+finished
+16
+20
+finished
+17
+21
+finished
+17
+22
+finished
+18
+23
+finished
+19
+24
+finished
+19
+25
+finished
+20
+26
+finished
+21
+27
+finished
+21
+28
+finished
+21
+29
+finished
+21
+30
+finished
+21
+31
+finished
+22
+32
+finished
+23
+33
+finished
+23
+34
+finished
+24
+35
+finished
+25
+36
+finished
+26
+37
+finished
+27
+38
+finished
+28
+39
+finished
+28
+40
+finished
+29
+41
+finished
+30
+42
+finished
+31
+43
+finished
+32
+44
+finished
+32
+45
+finished
+33
+46
+finished
+33
+47
+finished
+34
+48
+finished
+35
+49
+finished
+36
+50
+finished
+37
+51
+finished
+38
+52
+finished
+39
+53
+finished
+40
+54
+finished
+41
+55
+finished
+42
+56
+finished
+43
+57
+finished
+44
+58
+finished
+45
+59
+finished
+46
+60
+finished
+47
+61
+finished
+48
+62
+finished
+48
+63
+finished
+49
+64
+finished
+50
+65
+finished
+51
+66
+finished
+52
+67
+finished
+52
+68
+finished
+53
+69
+finished
+54
+70
+finished
+55
+71
+finished
+55
+72
+finished
+56
+73
+finished
+56
+74
+finished
+57
+75
+finished
+58
+76
+finished
+58
+77
+finished
+59
+78
+finished
+60
+79
+finished
+60
+80
+finished
+60
+81
+finished
+61
+82
+finished
+62
+83
+finished
+63
+84
+finished
+64
+85
+finished
+65
+86
+finished
+66
+87
+finished
+67
+88
+finished
+67
+89
+finished
+68
+90
+finished
+69
+91
+finished
+70
+92
+finished
+71
+93
+finished
+71
+94
+finished
+72
+95
+finished
+73
+96
+finished
+73
+97
+finished
+73
+98
+finished
+74
+99
+finished
+75
+0.75
+         42312932287 function calls in 25217.364 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 __future__.py:48(<module>)
+        1    0.000    0.000    0.000    0.000 __future__.py:74(_Feature)
+        7    0.000    0.000    0.000    0.000 __future__.py:75(__init__)
+        1    0.019    0.019    0.020    0.020 hashlib.py:55(<module>)
+        6    0.000    0.000    0.000    0.000 hashlib.py:94(__get_openssl_constructor)
+        1    0.020    0.020 25217.364 25217.364 network.py:1(<module>)
+256000000   48.404    0.000   48.404    0.000 network.py:10(setValue)
+ 10000000    8.867    0.000   17.762    0.000 network.py:105(setOutput)
+     1000    0.000    0.000    0.000    0.000 network.py:109(getOutput)
+  9999000    8.930    0.000   27.522    0.000 network.py:129(calculateDeltaJ)
+25718714000 3538.541    0.000 3538.541    0.000 network.py:13(getOutput)
+1009899000  133.858    0.000  133.858    0.000 network.py:133(getDelta)
+179988000   98.050    0.000  119.087    0.000 network.py:136(sigmoidFunction)
+ 59994000   40.075    0.000  114.167    0.000 network.py:139(sigmoidDerivativeFunction)
+    10100    0.225    0.000    0.225    0.000 network.py:157(decreaseAlpha)
+256000000   34.200    0.000   34.200    0.000 network.py:16(getIndex)
+      100    0.764    0.008    1.821    0.018 network.py:160(setInitialWeights)
+      100    0.022    0.000    0.776    0.008 network.py:170(testNumber)
+        1    0.004    0.004 25217.012 25217.012 network.py:197(leaveOneOut)
+      100 13195.771  131.958 25216.229  252.162 network.py:214(backPropLearning)
+        1    0.000    0.000    0.000    0.000 network.py:22(hiddenNode)
+       50    0.000    0.000    0.000    0.000 network.py:23(__init__)
+        1    0.274    0.274 25217.305 25217.305 network.py:274(main)
+    12800    0.008    0.000    0.009    0.000 network.py:30(setEdge)
+  1285000    0.354    0.000    0.354    0.000 network.py:33(updateEdgeWeight)
+ 50000000    7.837    0.000    7.837    0.000 network.py:39(getEdges)
+        1    0.000    0.000    0.000    0.000 network.py:4(inputNode)
+ 50000000    8.614    0.000    8.614    0.000 network.py:45(getInput)
+ 50000000 5399.022    0.000 7120.304    0.000 network.py:48(setWeightedInput)
+      316    0.000    0.000    0.000    0.000 network.py:5(__init__)
+ 50000000   42.579    0.000   89.202    0.000 network.py:55(setOutput)
+999950000  154.609    0.000  154.609    0.000 network.py:59(getOutput)
+ 49995000  432.164    0.000  660.185    0.000 network.py:62(calculateDeltaI)
+12848715000 1755.877    0.000 1755.877    0.000 network.py:69(getDelta)
+        1    0.000    0.000    0.000    0.000 network.py:72(outputNode)
+       10    0.000    0.000    0.000    0.000 network.py:73(__init__)
+      500    0.000    0.000    0.000    0.000 network.py:80(setEdge)
+    51000    0.014    0.000    0.014    0.000 network.py:83(updateEdgeWeight)
+509950000   68.152    0.000   68.152    0.000 network.py:89(getEdges)
+ 10000000    1.909    0.000    1.909    0.000 network.py:95(getInput)
+ 10000000  214.530    0.000  291.475    0.000 network.py:98(setWeightedInput)
+      101    0.002    0.000    0.570    0.006 random.py:100(seed)
+        1    0.019    0.019    0.039    0.039 random.py:40(<module>)
+        1    0.000    0.000    0.000    0.000 random.py:649(WichmannHill)
+        1    0.000    0.000    0.000    0.000 random.py:72(Random)
+        1    0.000    0.000    0.000    0.000 random.py:799(SystemRandom)
+        1    0.000    0.000    0.000    0.000 random.py:91(__init__)
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_md5}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha1}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha224}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha256}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha384}
+        1    0.000    0.000    0.000    0.000 {_hashlib.openssl_sha512}
+        1    0.000    0.000    0.000    0.000 {binascii.hexlify}
+      101    0.569    0.006    0.569    0.006 {function seed at 0x1042de500}
+        6    0.000    0.000    0.000    0.000 {getattr}
+        6    0.000    0.000    0.000    0.000 {globals}
+     6003    0.001    0.000    0.001    0.000 {len}
+179988001   21.038    0.000   21.038    0.000 {math.exp}
+        2    0.000    0.000    0.000    0.000 {math.log}
+        1    0.000    0.000    0.000    0.000 {math.sqrt}
+    15562    0.002    0.000    0.002    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+  1000150    1.911    0.000    1.911    0.000 {method 'index' of 'list' objects}
+      100    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+  1336000    0.108    0.000    0.108    0.000 {method 'random' of '_random.Random' objects}
+        1    0.002    0.002    0.002    0.002 {method 'readlines' of 'file' objects}
+        1    0.000    0.000    0.000    0.000 {open}
+        1    0.000    0.000    0.000    0.000 {posix.urandom}
+    21140    0.016    0.000    0.016    0.000 {range}
+
+
+eduroam-167-177:NeuralNetwork christopherwinter$ 

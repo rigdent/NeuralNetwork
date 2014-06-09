@@ -202,10 +202,13 @@ def leaveOneOut(network,examplesList):
         trainingData = list(examplesList)
         testData = trainingData.pop(examplesList.index(example))
         testNetwork = backPropLearning(trainingData,network)
-        vector = testNumber(testNetwork,testData)
-        if vector.index(1) == testData[1].index(1):
-            sucesses += 1
+        networkOutputVector = testNumber(testNetwork,testData)
+        if 1 in networkOutputVector: # If the networkOutputVector does not contain a 1, assume failure
+            vectorIndex = networkOutputVector.index(1)
+            if vectorIndex == testData[1].index(1):
+                sucesses += 1
         attempts += 1
+        print sucesses
     print float(sucesses) / len(examplesList)
 
 def backPropLearning(examples,network):
@@ -361,10 +364,12 @@ def main():
 
     network = [inputs,hidden,outputs]
 
+    #test = examplesList.pop(6)
+
     #completedNetwork = backPropLearning(examplesList,network)
 
     leaveOneOut(network,examplesList)
 
-    #testNumber(completedNetwork,testExample1)
+    #print testNumber(completedNetwork,test)
 
 main()
