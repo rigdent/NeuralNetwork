@@ -369,12 +369,6 @@ def backPropLearning(examples,network):
             condition = False
         elif meanSquaredError < 0.000001:
             condition = False
-    print "finished"
-    #print meanSquaredError
-    print "Iterations: ",iteration
-    #for node in network[-1]:
-    # print node.getOutput()
-    #printEdges(network[1:])
 
     return network
 
