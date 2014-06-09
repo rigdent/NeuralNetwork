@@ -133,15 +133,6 @@ class outputNode:
         else:
             return self.output
 
-
-        #return self.output
-        '''
-if self.output >= 0.5:
-return 1
-else:
-return 0'''
-        #return self.output
-
     def setDeltaJ(self,deltaJ):
         self.deltaJ = deltaJ
 
@@ -160,13 +151,21 @@ return 0'''
     def getError(self):
         return self.error
 
+'''
+This method returns the result of the sigmoid function.
+'''
 def sigmoidFunction(x):
-    #print x
     return 1 / (1 + math.exp(-x))
 
+'''
+This method returns the result of the derivative of the sigmoid function.
+'''
 def sigmoidDerivativeFunction(x):
     return sigmoidFunction(x) * (1 - sigmoidFunction(x))
 
+'''
+This was a method used in testing to print the edges of the network.
+'''
 def printEdges(network):
     for layer in network[1:]:
         for node in layer:
@@ -174,6 +173,9 @@ def printEdges(network):
 
     return None
 
+'''
+This was a method used in testing to print the inputs of the network.
+'''
 def printInputs(network):
     for node in network[0]:
         print node.getIndex(),
@@ -182,9 +184,15 @@ def printInputs(network):
 
     return None
 
+'''
+This function decreases alpha by the appropriate amount each time.
+'''
 def decreaseAlpha(alpha):
     return float(alpha)*0.999
 
+'''
+This function sets all of the weights to be a random intial value between 0 and 0.1.
+'''
 def setInitialWeights(network):
     random.seed(10)
 
@@ -195,6 +203,9 @@ def setInitialWeights(network):
 
     return None
 
+'''
+This is the function used to actually test a number.
+'''
 def testNumber(network,example):
 
     # Set the inputs
@@ -208,22 +219,19 @@ def testNumber(network,example):
             node.setWeightedInput()
             node.setOutput()
 
-    # print outputs
 
     vector = []
 
-    #print "The answer is: ",
-    #print example[1]
-
-    #print "The network gets: "
     for node in network[-1]:
-        #print node.getOutput()
         vector.append(node.getOutput())
 
     return vector
 
 
 
+'''
+This function performs k-fold cross validation on the network.
+'''
 def kFoldCrossV(network,examplesList,numToCheck):
     #pick from list is used to select from examples randomly and keep track of what's been tested
     pickFromList = range(len(examplesList))
@@ -271,7 +279,9 @@ def kFoldCrossV(network,examplesList,numToCheck):
 
 
 
-
+'''
+This function does leave-one-out cross validation on the network. Takes a very long time!
+'''
 def leaveOneOut(network,examplesList):
     sucesses = 0
     attempts = 0
@@ -289,6 +299,9 @@ def leaveOneOut(network,examplesList):
         print sucesses
     print float(sucesses) / len(examplesList)
 
+'''
+The main function that trains the network.
+'''
 def backPropLearning(examples,network):
 
     setInitialWeights(network)
@@ -368,6 +381,7 @@ def backPropLearning(examples,network):
     return network
 
 def main():
+    # reads in the examples
     data = open('smallData.txt', 'r')
     data = data.readlines()
     length = len(data) #/9 + 17*6
@@ -387,7 +401,8 @@ def main():
             dict = {}
         counter+= 1
 
-    #print examplesList[-1][1]
+
+    # our output is in the form of a vector. The number zero would be [1,0,0,0,0,0,0,0,0,0], etc
 
     outputVector = [0] * 10
 
@@ -428,33 +443,9 @@ The hidden and output nodes are initialized just with an index. They are also se
 
     network = [inputs,hidden,outputs]
 
-    #test = examplesList.pop(6)
-
-
-# completedNetwork = backPropLearning(examplesList,network)
-
-# testData = open('testData.txt', 'r')
-# testData = testData.readlines()
-# length = len(testData)
-# testExample = {}
-# testExampleForm = []
-# for i in range(16):
-# for j in range(0,16):
-# testExample[j] = int(testData[i][j])
 
     #leaveOneOut(network,examplesList)
+
     print kFoldCrossV(network,examplesList,30)
-    #completedNetwork = backPropLearning(trainingExamplesList,network)
-
-
-    #leaveOneOut(network,trainingExamplesList)
-'''
-for example in testExamplesList:
-print "The answer is",example[1].index(1)
-print testNumber(completedNetwork,example)
-'''
-    #print testNumber(completedNetwork,test)
-# outputVectorTest = testNumber(completedNetwork, [testExample, 5])
-# print outputVectorTest.index(1)
-
+    
 main()
