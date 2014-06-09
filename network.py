@@ -38,7 +38,8 @@ class hiddenNode:
         self.edges[index][0] = weight
 
     def updateEdgeWeightMomentum(self,index,weight):
-        self.edges[index][0] = (self.edges[index][0] * 0.9) + self.previousWeightUpdates[index]
+        #print self.previousWeightUpdates[index]
+        self.edges[index][0] = weight + (self.previousWeightUpdates[index]) * 0.5
 
     def getEdge(self,index):
         return self.edges[index]
@@ -86,15 +87,19 @@ class outputNode:
         self.input = 0
         self.output = 0
         self.deltaJ = 0
+        self.previousWeightUpdates = [0]
+
 
     def setEdge(self,weight,node):
+        self.previousWeightUpdates.append(0)
         self.edges.append([weight,node])
 
     def updateEdgeWeight(self,index,weight):
         self.edges[index][0] = weight
 
     def updateEdgeWeightMomentum(self,index,weight):
-        self.edges[index][0] = (self.edges[index][0] * 0.9) + weight
+        #print self.previousWeightUpdates[index]
+        self.edges[index][0] = (self.edges[index][0] * 0.9) + ((self.previousWeightUpdates[index]) * 0.5)
 
     def getEdge(self,index):
         return self.edges[index]
@@ -146,7 +151,12 @@ class outputNode:
     def getDelta(self):
         return self.deltaJ
 
+    def setPreviousWeightUpdate(self,index,previousWeight):
+        self.previousWeightUpdates[index] = previousWeight
+        return None
+
 def sigmoidFunction(x):
+    #print x
     return 1 / (1 + math.exp(-x))
 
 def sigmoidDerivativeFunction(x):
@@ -237,6 +247,8 @@ def backPropLearning(examples,network):
 
     while iteration <= 100: # For now only iterate 5 times
 
+        #print iteration
+
         for example in examples:
             # set the inputs
             for input in network[0]:
@@ -247,6 +259,7 @@ def backPropLearning(examples,network):
             for layer in network[1:]:
                 for node in layer:
                     node.setWeightedInput()
+                    node.getInput()
                     node.setOutput()
 
             # calculate delta J for output layer
@@ -272,7 +285,8 @@ def backPropLearning(examples,network):
                 for node in layer:
                     for edgeIndex in range(len(node.getEdges())):
                         weightUpdate = node.getEdge(edgeIndex)[0] + ( alpha * node.getEdge(edgeIndex)[1].getOutput() * node.getDelta() )
-                        node.UpdateEdgeWeight(edgeIndex,weightUpdate)
+                        #node.setPreviousWeightUpdate(edgeIndex,weightUpdate)
+                        node.updateEdgeWeight(edgeIndex,weightUpdate)
             #printEdges(network[1:])
             #print '\n'
         alpha = decreaseAlpha(alpha)
@@ -324,6 +338,17 @@ def main():
             dict = {}
         counter+= 1
 
+    #print examplesList[-1][1]
+
+    outputVector = [0] * 10
+
+    ''' Examples list will be a list of tuples, where the first item in the tuple is the dictionary for the example, and the second item in the tuple is the actual value. This code takes that list, and converts the output value into an output vector.'''
+    for example in examplesList:
+        value = example[1]
+        example[1] = list(outputVector)
+        example[1][value] = 1
+
+
     testExample1 = examplesList[-1]
     testExample2 = examplesList[-2]
     testExample3 = examplesList[-3]
@@ -334,17 +359,8 @@ def main():
     testExample8 = examplesList[-8]
     testExample9 = examplesList[-9]
 
-    examplesList = examplesList[0:100]
-
-    #print examplesList[-1][1]
-
-    outputVector = [0] * 10
-
-    ''' Examples list will be a list of tuples, where the first item in the tuple is the dictionary for the example, and the second item in the tuple is the actual value. This code takes that list, and converts the output value into an output vector.'''
-    for example in examplesList:
-        value = example[1]
-        example[1] = list(outputVector)
-        example[1][value] = 1
+    trainingExamplesList = examplesList[0:100]
+    testExamplesList = [testExample1,testExample2,testExample3,testExample4,testExample5,testExample6,testExample7,testExample8,testExample9]
 
     '''
     This section constructs the network. It consists of n input nodes, where n is the number of attributes for each example. There are then an arbitrary number of hidden nodes and output nodes.
@@ -379,10 +395,14 @@ def main():
 
     #test = examplesList.pop(6)
 
-    #completedNetwork = backPropLearning(examplesList,network)
+    #completedNetwork = backPropLearning(trainingExamplesList,network)
 
-    leaveOneOut(network,examplesList)
-
+    leaveOneOut(network,trainingExamplesList)
+'''
+    for example in testExamplesList:
+        print "The answer is",example[1].index(1)
+        print testNumber(completedNetwork,example)
+'''
     #print testNumber(completedNetwork,test)
 
 main()
