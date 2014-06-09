@@ -38,7 +38,8 @@ class hiddenNode:
         self.edges[index][0] = weight
 
     def updateEdgeWeightMomentum(self,index,weight):
-        self.edges[index][0] = (self.edges[index][0] * 0.9) + self.previousWeightUpdates[index]
+        #print self.previousWeightUpdates[index]
+        self.edges[index][0] = weight + (self.previousWeightUpdates[index]) * 0.5
 
     def getEdge(self,index):
         return self.edges[index]
@@ -86,15 +87,20 @@ class outputNode:
         self.input = 0
         self.output = 0
         self.deltaJ = 0
+        self.previousWeightUpdates = [0]
+        self.error = 0
+
 
     def setEdge(self,weight,node):
+        self.previousWeightUpdates.append(0)
         self.edges.append([weight,node])
 
     def updateEdgeWeight(self,index,weight):
         self.edges[index][0] = weight
 
     def updateEdgeWeightMomentum(self,index,weight):
-        self.edges[index][0] = (self.edges[index][0] * 0.9) + weight
+        #print self.previousWeightUpdates[index]
+        self.edges[index][0] = (self.edges[index][0] * 0.9) + ((self.previousWeightUpdates[index]) * 0.5)
 
     def getEdge(self,index):
         return self.edges[index]
@@ -141,12 +147,21 @@ class outputNode:
 
     def calculateDeltaJ(self,example):
         self.deltaJ = sigmoidDerivativeFunction(self.input) * (example[1][self.index] - self.output)
+        self.error = example[1][self.index] - self.output
         return self.deltaJ
 
     def getDelta(self):
         return self.deltaJ
 
+    def setPreviousWeightUpdate(self,index,previousWeight):
+        self.previousWeightUpdates[index] = previousWeight
+        return None
+
+    def getError(self):
+        return self.error
+
 def sigmoidFunction(x):
+    #print x
     return 1 / (1 + math.exp(-x))
 
 def sigmoidDerivativeFunction(x):
@@ -284,8 +299,12 @@ def backPropLearning(examples,network):
     alpha = 1 # Start learning rate at 1
 
     iteration = 0
+    epoch = 100
+    condition = True
+    meanSquaredError = 0
+    while condition: # For now only iterate 5 times
 
-    while iteration <= 100: # For now only iterate 5 times
+        #print iteration
 
         for example in examples:
             # set the inputs
@@ -297,13 +316,18 @@ def backPropLearning(examples,network):
             for layer in network[1:]:
                 for node in layer:
                     node.setWeightedInput()
+                    node.getInput()
                     node.setOutput()
 
             # calculate delta J for output layer
-
+            error  = 0
             for node in network[-1]:
                 node.calculateDeltaJ(example)
+                error += node.getError()
             # calculate delta I for all hidden layers
+            previousMeanSquaredError = meanSquaredError
+            meanSquaredError = error**2 / len(network[-1])
+            #print meanSquaredError
 
             for layer in reversed(network[1:-1]):
                 previousLayer = network.index(layer) + 1 # This is the index of the previous layer
@@ -322,12 +346,20 @@ def backPropLearning(examples,network):
                 for node in layer:
                     for edgeIndex in range(len(node.getEdges())):
                         weightUpdate = node.getEdge(edgeIndex)[0] + ( alpha * node.getEdge(edgeIndex)[1].getOutput() * node.getDelta() )
+
+                        #node.setPreviousWeightUpdate(edgeIndex,weightUpdate)
                         node.updateEdgeWeight(edgeIndex,weightUpdate)
             #printEdges(network[1:])
             #print '\n'
         alpha = decreaseAlpha(alpha)
         iteration += 1
+
+        if iteration >= epoch:
+            condition = False
+        elif meanSquaredError < 0.00001:
+            condition  = False
     print "finished"
+    print meanSquaredError
     #for node in network[-1]:
     #    print node.getOutput()
     #printEdges(network[1:])
@@ -353,6 +385,17 @@ def main():
             yVal = 0
             dict = {}
         counter+= 1
+
+    #print examplesList[-1][1]
+
+    outputVector = [0] * 10
+
+    ''' Examples list will be a list of tuples, where the first item in the tuple is the dictionary for the example, and the second item in the tuple is the actual value. This code takes that list, and converts the output value into an output vector.'''
+    for example in examplesList:
+        value = example[1]
+        example[1] = list(outputVector)
+        example[1][value] = 1
+
 
     testExample1 = examplesList[-1]
     testExample2 = examplesList[-2]
@@ -409,6 +452,7 @@ def main():
 
     #test = examplesList.pop(6)
 
+
 #     completedNetwork = backPropLearning(examplesList,network)
 
 #     testData = open('testData.txt', 'r')
@@ -422,7 +466,15 @@ def main():
 
     #leaveOneOut(network,examplesList)
     print kFoldCrossV(network,examplesList,30)
+    #completedNetwork = backPropLearning(trainingExamplesList,network)
 
+
+    leaveOneOut(network,trainingExamplesList)
+'''
+    for example in testExamplesList:
+        print "The answer is",example[1].index(1)
+        print testNumber(completedNetwork,example)
+'''
     #print testNumber(completedNetwork,test)
 #     outputVectorTest = testNumber(completedNetwork, [testExample, 5])
 #     print outputVectorTest.index(1)
