@@ -136,10 +136,10 @@ class outputNode:
 
         #return self.output
         '''
-        if self.output >= 0.5:
-            return 1
-        else:
-            return 0'''
+if self.output >= 0.5:
+return 1
+else:
+return 0'''
         #return self.output
 
     def setDeltaJ(self,deltaJ):
@@ -183,7 +183,7 @@ def printInputs(network):
     return None
 
 def decreaseAlpha(alpha):
-    return float(alpha)*0.99
+    return float(alpha)*0.999
 
 def setInitialWeights(network):
     random.seed(10)
@@ -320,7 +320,7 @@ def backPropLearning(examples,network):
                     node.setOutput()
 
             # calculate delta J for output layer
-            error  = 0
+            error = 0
             for node in network[-1]:
                 node.calculateDeltaJ(example)
                 error += node.getError()
@@ -356,13 +356,13 @@ def backPropLearning(examples,network):
 
         if iteration >= epoch:
             condition = False
-        elif meanSquaredError < 0.00001:
-            condition  = False
+        elif meanSquaredError < 0.000001:
+            condition = False
     print "finished"
-    print meanSquaredError
-    print iteration
+    #print meanSquaredError
+    print "Iterations: ",iteration
     #for node in network[-1]:
-    #    print node.getOutput()
+    # print node.getOutput()
     #printEdges(network[1:])
 
     return network
@@ -397,36 +397,13 @@ def main():
         example[1] = list(outputVector)
         example[1][value] = 1
 
-
-    testExample1 = examplesList[-1]
-    testExample2 = examplesList[-2]
-    testExample3 = examplesList[-3]
-    testExample4 = examplesList[-4]
-    testExample5 = examplesList[-5]
-    testExample6 = examplesList[-6]
-    testExample7 = examplesList[-7]
-    testExample8 = examplesList[-8]
-    testExample9 = examplesList[-9]
-
-
-
-    #print examplesList[-1][1]
-
-    outputVector = [0] * 10
-
-    ''' Examples list will be a list of tuples, where the first item in the tuple is the dictionary for the example, and the second item in the tuple is the actual value. This code takes that list, and converts the output value into an output vector.'''
-    for example in examplesList:
-        value = example[1]
-        example[1] = list(outputVector)
-        example[1][value] = 1
-
     '''
-    This section constructs the network. It consists of n input nodes, where n is the number of attributes for each example. There are then an arbitrary number of hidden nodes and output nodes.
+This section constructs the network. It consists of n input nodes, where n is the number of attributes for each example. There are then an arbitrary number of hidden nodes and output nodes.
 
-    The input nodes are stored in a list, and are initialized to have a value of 0. They also have an index attribute.
+The input nodes are stored in a list, and are initialized to have a value of 0. They also have an index attribute.
 
-    The hidden and output nodes are initialized just with an index. They are also set to have the connections from the layer that they receive inputs from as the edges.
-    '''
+The hidden and output nodes are initialized just with an index. They are also set to have the connections from the layer that they receive inputs from as the edges.
+'''
 
     numInputs = len(examplesList[0][0])
     numHidden = 50
@@ -454,30 +431,30 @@ def main():
     #test = examplesList.pop(6)
 
 
-#     completedNetwork = backPropLearning(examplesList,network)
+# completedNetwork = backPropLearning(examplesList,network)
 
-#     testData = open('testData.txt', 'r')
-#     testData = testData.readlines()
-#     length = len(testData)
-#     testExample = {}
-#     testExampleForm = []
-#     for i in range(16):
-#         for j in range(0,16):
-#             testExample[j] = int(testData[i][j])
+# testData = open('testData.txt', 'r')
+# testData = testData.readlines()
+# length = len(testData)
+# testExample = {}
+# testExampleForm = []
+# for i in range(16):
+# for j in range(0,16):
+# testExample[j] = int(testData[i][j])
 
     #leaveOneOut(network,examplesList)
     print kFoldCrossV(network,examplesList,30)
     #completedNetwork = backPropLearning(trainingExamplesList,network)
 
 
-    leaveOneOut(network,trainingExamplesList)
+    #leaveOneOut(network,trainingExamplesList)
 '''
-    for example in testExamplesList:
-        print "The answer is",example[1].index(1)
-        print testNumber(completedNetwork,example)
+for example in testExamplesList:
+print "The answer is",example[1].index(1)
+print testNumber(completedNetwork,example)
 '''
     #print testNumber(completedNetwork,test)
-#     outputVectorTest = testNumber(completedNetwork, [testExample, 5])
-#     print outputVectorTest.index(1)
+# outputVectorTest = testNumber(completedNetwork, [testExample, 5])
+# print outputVectorTest.index(1)
 
 main()
