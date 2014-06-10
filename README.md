@@ -5,26 +5,39 @@ Sources We Used:
 
 The algorithm is taken from "Artificial Intelligence A modern Approach" by Peter Norvig and Stuart Jonathan Russell on page 734.
 
-We use a data set from here, http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits.
+We use a data set from here:
+http://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits
 
 The data set contain around 1000 examples of handwritten numbers ranging from 0 to 9 converted to a 32 by 32 bitmap. We resized the bitmap to make it 16 by 16 to speed up our program due to fears of the size of the bitmap slowing our program (32 by 32 would be 1024 input nodes).
 
 How To Run the Program:
 
-Running the program without changing anything will run build the outline of a neural network, and then train that network on the examples, using k-fold cross validation. The default is to use a test set of 30 and then train with all of the other examples. After running, it will tell you the percentage of tests that we successful (across all of the validation runs). The number taken out for each test can be changed.
+Running the program without changing anything will build the outline of a neural network, train that network on the examples, and then test using k-fold cross validation. The default is to use a test set of 30 and then train with all of the other examples. After running, it will tell you the percentage of tests that we successful (across all of the validation runs). The number taken out for each test can be changed. On the lab computers, under pypy, this takes around 10 minutes and yields an accuracy rate of 89%.
 
-We also included a leave-one-out cross validation function, which will again run and print out the percentage of successes. However, this will take a very long time, and so we do not recommend it. When we ran this function, each validation run used 100 iterations, and we were using only the first 101 examples. This had an accuracy rate of 75%, but took several hours to run. Using the test on deltaJ that we implemented later might speed this up enough, but would still likely take a long time. It is also possible that our accuracy rate was actually larger, but we interpreted an output vector that had no values greater than 0.9 to be a failure, even if one of the components was much larger than the others. Looking simply for the biggest component might increase our accuracy rate.
-
-If the program is run with an argument containing a bitmap of a number, it will return what it believes the number is. The bitmap must be a txt file that is 16 characters by 16 characters containing only 1's and 0's.
-
+We also included a leave-one-out cross validation function, which will again run and print out the percentage of successes. However, this will take a very long time, and so we do not recommend it. When we ran this function, each validation run used 100 iterations, and we were using only the first 101 examples. This had an accuracy rate of 75%, but took several hours to run. Using the test on the mean squared sum of the errors that we implemented later might speed this up a little, but would still likely take a long time. It is also possible that our accuracy rate was actually larger, but we interpreted an output vector that had no values greater than 0.9 to be a failure, even if one of the components was much larger than the others. Looking simply for the biggest component might increase our accuracy rate.
 
 Running in pypy will significantly speed up the run time.
 
 How Our Program Works:
 
-We set alpha to decay to 0.999 of its previous value each time.
+Our program first constructs the neural network.
 
-We included a test that stops the iterations if the mean squared sum of the error drops below a certain threshold. This significantly reduces the number of iterations that we do, at a small cost in accuracy (at the default settings for k-fold cross validation our accuracy rate dropped from ~90% to ~89%). The time speed up is likely worth it, especially at the larger data set sizes.
+The algorithm that trains the network is based on the algorithm given in the book. We set alpha to decay to 0.999 times its previous value every time the weights are updated. We found that a decay rate any smaller (such as 0.99) caused our accuracy to suffer.
+
+We included a test that stops the iterations if the mean squared sum of the error drops below a certain threshold. This significantly reduces the number of iterations that we do, at a small cost in accuracy (at the default settings for k-fold cross validation our accuracy rate dropped from ~90% to ~89%). The time speed up is likely worth it, especially at the larger data set sizes. If the network undergoes 100 iterations but the mean squared sum hasn't fallen below this threshold (set to 100 iterations by default), the iterations are also stopped. In our testing, the mean squared sum cutoff occured at about 10-15 iterations, so well below this limit.
+
+In particular, we determined the cutoff by examining the mean squared sum of the errors after 100 iterations. This indicates that the error is reaching a value after between 10 and 15 iterations, and it is at that point so small that it isn't changing significantly for the next 85-90 iterations. This is where the significant cost savings come in.
+
+We adjusted the original data set (nnData.txt) slightly. It was originally a 32 by 32 bitmap, which is 1024 inputs. This takes a long time, we we averaged groups of 4 pixels to shrink it down to 256 inputs, which is more reasonable (smallData.txt).
+
+We started with 96 hidden nodes based examples we found of neural networks being used for OCR. However, 96 hidden nodes took a long time to run, and switching to 50 maintained a high level of accuracy while speeding up the training dramatically.
 
 
-We tested our algorithm using leave-one-out cross validation, with the first 101 examples in the examplesList (the first 101 examples from smallData.txt). Having the neural network iterate 100 times for each test yields a 75% correct identification rate. This number is probably lower than the actual number the network could correctly identify. First, more iterations would probably lead to a more accurate network. Second, we use a sigmoid function to set the output of a node. If the sigmoid function returns greater than 0.9, we set the output to 1, and if it returns less than 0.1 we set the output to 0. If the sigmoid function returns something in between, we set the output to be whatever was returned. However, if, when testing an example, we don't encounter a 1 anywhere in the vector (because the output of all the nodes was always less than 0.9), we treat it as a failure. However, some of the nodes had all 0s except for a value in the output vector that was greater than 0.1 but less than 0.9. If we took the largest value in the output vector to be the answer, instead of looking for a 1, our success rate would likely increase. Also, this method took a very long time, we waited several hours for it to finish. Note that this test was run before we changed our criteria for stopping, and so ran for 100 iterations every time.
+What We Included:
+
+-This README
+-our program, which is called network.py
+-an earlier attempt, which is called backPropLearning.py [THIS IS NOT WHAT YOU SHOULD RUN]
+-the original data set (nnData.txt)
+-the smaller data set (smallData.txt)
+-a test piece of data (testData.txt)

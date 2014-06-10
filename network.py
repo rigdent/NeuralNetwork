@@ -284,7 +284,6 @@ def leaveOneOut(network,examplesList):
     sucesses = 0
     attempts = 0
     for example in examplesList:
-        print attempts
         trainingData = list(examplesList)
         testData = trainingData.pop(examplesList.index(example))
         testNetwork = backPropLearning(trainingData,network)
@@ -294,7 +293,6 @@ def leaveOneOut(network,examplesList):
             if vectorIndex == testData[1].index(1):
                 sucesses += 1
         attempts += 1
-        print sucesses
     print float(sucesses) / len(examplesList)
 
 '''
@@ -438,6 +436,10 @@ The hidden and output nodes are initialized just with an index. They are also se
 
     #leaveOneOut(network,examplesList)
 
-    print kFoldCrossV(network,examplesList,30)
+    kValue = 30
+
+    print "K-Fold cross validation with k = ",kValue," yields an accuracy rate of: ",
+    print kFoldCrossV(network,examplesList,kValue)
+
 
 main()
